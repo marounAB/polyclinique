@@ -6,33 +6,32 @@ import { Breadcrumb, BreadcrumbItem,
 Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
-class Login extends Component{
+
+class Signup extends Component{
     constructor(props){
         super(props);
 
         this.state = {
+            Firstname: '',
+            Lastname: '',
             Email: '',
-            Password: '',
-            users: [{Email:'cynthiaobei@gmail.com', Password: '123'}]
+            Password: ''
+
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     };
 
-  
-
     handleSubmit(event) {   
-        for(var i=0;i<this.state.users.length;i++){
-            if(this.state.Email===this.state.users[i].Email){
-                if(this.state.Password===this.state.users[i].Password){
-                    console.log('Current State is: ' + JSON.stringify(this.state));
-                    alert('Current State is: ' + JSON.stringify(this.state));
-                    this.props.history.push("/home");
-                }
-            }
+
+         /*    console.log('Current State is: ' + JSON.stringify(this.state));
+             alert('Current State is: ' + JSON.stringify(this.state));*/
+             
+
+             this.props.history.push("/home");
             event.preventDefault();
         }
-    }
+    
 
     handleInputChange(event) {
         const target = event.target;
@@ -47,29 +46,42 @@ class Login extends Component{
    
     render(){
         return(
-        <div className="container"  Style="padding-top: 100px; padding-left: 170px; background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,207,173,1) 0%, rgba(0,212,255,1) 100%); height:700px; width: 700px">
+        <div className="container">
             <div className="row row-content">
-                <div className="col-12 col-md-9"  Style="padding-top: 50px; padding-left: 5px;" >
+                <div className="col-12 col-md-9">
                     <Form onSubmit={this.handleSubmit}>
-                        <h3 Style="padding-bottom: 25px;">Login</h3>
+                        <h3>Sign up</h3>
                         <FormGroup row>
-                            <Label htmlfor="email" md={3}>Email address</Label>
-                            <Col md={9}>
+                            <Label htmlfor="Firstname" md={2}>Firstname</Label>
+                            <Col md={10}>
+                                <Input type="Firstname" value={this.state.Firstname}  onChange={this.handleInputChange} name="Firstname" className="form-control" placeholder="Enter Firstname" />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label md={2}>Lastname</Label>
+                            <Col md={10}>
+                                <Input htmlfor="Lastname" type="Lastname" value={this.state.Lastname}  onChange={this.handleInputChange} name="Lastname" className="form-control" placeholder="Enter Lastname" />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label htmlfor="email" md={2}>Email address</Label>
+                            <Col md={10}>
                                 <Input type="email" value={this.state.Email}  onChange={this.handleInputChange} name="Email" className="form-control" placeholder="Enter email" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
-                            <Label md={3}>Password</Label>
-                            <Col md={9}>
+                            <Label md={2}>Password</Label>
+                            <Col md={10}>
                                 <Input htmlfor="password" type="password" value={this.state.Password}  onChange={this.handleInputChange} name="Password" className="form-control" placeholder="Enter password" />
                             </Col>
                         </FormGroup>
+
+
                         
                         <Button type="submit" color="primary">Submit</Button>
-                        <p className="Sign-up text-right">
-                           <Link to="/Signup" Style="color:white;">Create account</Link>
-                        </p>
                     </Form>
                 </div>
             </div>
@@ -79,4 +91,4 @@ class Login extends Component{
 }
 
 
-export default Login;
+export default Signup;
