@@ -27,7 +27,7 @@ class Login extends Component{
                 if(this.state.Password===this.state.users[i].Password){
                     console.log('Current State is: ' + JSON.stringify(this.state));
                     alert('Current State is: ' + JSON.stringify(this.state));
-                    this.props.history.push("/home");
+                    this.props.history.push("/medicalfile");
                 }
             }
             event.preventDefault();
