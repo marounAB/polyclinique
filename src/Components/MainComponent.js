@@ -9,13 +9,13 @@ class Main extends Component{
 
     return(
         <div>
-    <Switch>
-              <Route path="/home" component={HomePage} />
-              <Route path="/login" component={Login}/>
-              <Route path="/Signup" component={Signup}/>
-              {/* <Route path="/home" Component={HomePage}/> */}
-              <Redirect to="/login" />
-              </Switch>
+            <Switch>
+                <Route path="/home" component={HomePage} />
+                <Route path="/login" component={Login}/>
+                <Route path="/Signup" component={Signup}/>
+                {/* <Route path="/home" Component={HomePage}/> */}
+                <Redirect to="/login" />
+            </Switch>
               
 </div>
               )

@@ -24,14 +24,14 @@ class Header extends Component {
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/clinic-logo.ppg' height="30" width="41" alt='Polyclinic' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/home"><img id="logo" src='assets/images/logo.jpg' width="150" alt='Polyclinic' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
                                 <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/home'><span className="fa fa-info fa-lg"></span> Take an Appointment</NavLink>
+                                <NavLink className="nav-link" to='/home'><span className="fa fa-plus fa-lg"></span> Take an Appointment</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link"  to='/home'><span className="fa fa-list fa-lg"></span> Your Appointments</NavLink>
@@ -45,7 +45,7 @@ class Header extends Component {
                         <div className="row row-header">
                             <div className="col-12 col-sm-6">
                                 <h1>Polyclinic</h1>
-                                <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                                <p>I swear to fulfill, to the best of my ability and judgment, this covenant: I will respect the hard-won scientific gains of those physicians in whose steps I walk, and gladly share such knowledge as is mine with those who are to follow.  ~Hippocratic oath</p>
                             </div>
                         </div>
                     </div>

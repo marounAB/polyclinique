@@ -19,8 +19,8 @@
 .jumbotron {
   padding:70px 30px 70px 30px;
   margin:0px auto;
-  background: #D1C4E9 !important;
-  color:#1C8EF9;
+  background: #a7cbdf !important;
+  color:#024c92;
 }
 
 address{
@@ -97,4 +97,31 @@ html, .App, #root, .auth-wrapper {
 
 .custom-control-label {
   font-weight: 400;
+}
+
+.PolyInfo {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #a7cbdf;
+  align-items: center;
+  color: #024c92;
+}
+
+.speciality {
+  padding: 10px 10px 10px 10px;
+}
+
+.speciality div {
+  width: 100%;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  border-radius: 5px;
+  background: white;
+  color:#024c92;
+}
+
+#logo {
+  border-radius: 10px;
 }
