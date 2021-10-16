@@ -125,3 +125,25 @@ html, .App, #root, .auth-wrapper {
 #logo {
   border-radius: 10px;
 }
+
+.imgStyle {
+  width: 128px;
+  height: 128px;
+  border-radius: 5px;
+}
+
+.ADoctor {
+  background: white;
+  border-radius: 5px;  
+}
+
+.ADoctor:hover {
+  box-shadow: 5px 5px #D1C4E9;
+  background: #D1C4E9;
+}
+
+.DocDesc {
+  width: 100%;
+  text-align: start;
+  padding-left: 10px;
+}
