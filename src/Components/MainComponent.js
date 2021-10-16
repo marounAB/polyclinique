@@ -6,6 +6,7 @@ import Signup from './Signup';
 import FichierMedical from './Fichiermedical';
 import DoctorsList from './DoctorsListComponent';
 import { DOCTORS } from '../shared/doctors';
+import HomeDoctor from './HomeDoctor';
 
 class Main extends Component{
     constructor(props) {
@@ -24,6 +25,7 @@ class Main extends Component{
                         <Route path="/doctorsList" component={() => <DoctorsList doctors={this.state.doctorsList} />} />
                         <Route path="/Signup" component={Signup} />
                         <Route path="/medicalfile" component={FichierMedical} />
+                        <Route path="/homedoctor" component={HomeDoctor} />
                         <Redirect to="/login" />
                     </Switch>
                 </div>

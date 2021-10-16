@@ -38,6 +38,9 @@ class FichierMedical extends Component{
   
 
     handleSubmit(event) {   
+
+        console.log('Current State is: ' + JSON.stringify(this.state));
+        alert('Current State is: ' + JSON.stringify(this.state));
         
             this.props.history.push("/home");
        

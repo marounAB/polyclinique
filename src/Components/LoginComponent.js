@@ -13,7 +13,8 @@ class Login extends Component{
         this.state = {
             Email: '',
             Password: '',
-            users: [{Email:'cynthiaobei@gmail.com', Password: '123'}]
+            users: [{Email:'cynthiaobei@gmail.com', Password: '123'}],
+            doctors: [{Email:'maroun@gmail.com', Password: '321'}]
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,12 +28,23 @@ class Login extends Component{
                 if(this.state.Password===this.state.users[i].Password){
                     console.log('Current State is: ' + JSON.stringify(this.state));
                     alert('Current State is: ' + JSON.stringify(this.state));
-                    this.props.history.push("/medicalfile");
+                    this.props.history.push("/home");
                 }
             }
+        }
+        for(var j=0;j<this.state.doctors.length;j++){
+            if(this.state.Email===this.state.doctors[j].Email){
+                if(this.state.Password===this.state.doctors[j].Password){
+                    console.log('Current State is: ' + JSON.stringify(this.state));
+                    alert('Current State is: ' + JSON.stringify(this.state));
+                    this.props.history.push("/homedoctor");
+                }
+            }
+        }
+
             event.preventDefault();
         }
-    }
+    
 
     handleInputChange(event) {
         const target = event.target;
