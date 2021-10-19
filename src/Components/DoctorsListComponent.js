@@ -12,7 +12,7 @@ const imgStyle = {
 const RenderADoctor = ({doctor}) => {
     return ( 
         <div className="ADoctor container">
-                <Link to="/home">
+            <Link to={`/doctorsList/${doctor.id}`} >
                 <Media className="mt-5">
                     <Media className="row align-items-center">
                         <Media left top className="col-4">
