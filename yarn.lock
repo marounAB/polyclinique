@@ -9220,6 +9220,11 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-appointment-picker@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-appointment-picker/-/react-appointment-picker-3.2.0.tgz#75f6e0db8ae611822544419e533a21a7511e1f4d"
+  integrity sha512-EAcja53zIgM/7AeQsVxFGlW3B43TVadLazQjiWWv7IYvU9STou5bk5xm1DWkqSB5m84idohE+iG260MRzIZSdA==
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"

@@ -154,3 +154,30 @@ html, .App, #root, .auth-wrapper {
   width : 100%;
   height:40px;
 }
+
+.choose {
+  width: 100%;
+  background: #024c92;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.chosen {
+  width: 100%;
+  background: green;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.taken {
+  width: 100%;
+  background: gray;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+  margin-bottom: 10px;
+}

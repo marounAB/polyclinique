@@ -8,6 +8,8 @@ import DoctorsList from './DoctorsListComponent';
 import { DOCTORS } from '../shared/doctors';
 import HomeDoctor from './HomeDoctor';
 import TakeAppointment from './TakeAppointmentComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 
 class Main extends Component{
     constructor(props) {
@@ -20,7 +22,9 @@ class Main extends Component{
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
-                <TakeAppointment doctor={this.state.doctorsList.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} />
+                <div>
+                    <TakeAppointment doctor={this.state.doctorsList.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} />
+                </div>
             );
         };
 
@@ -30,7 +34,7 @@ class Main extends Component{
                         <Route path={"/login"} component={Login} />
                         <Route path={"/home"} component={HomePage} />
                         <Route exact path={"/doctorsList"} component={() => <DoctorsList doctors={this.state.doctorsList} />} />
-                        <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
+                        <Route exact path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={HomeDoctor} />
