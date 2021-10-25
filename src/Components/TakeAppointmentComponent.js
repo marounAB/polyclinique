@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { AppointmentPicker } from 'react-appointment-picker';
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import { TIMESLOTS } from '../shared/timeslots';

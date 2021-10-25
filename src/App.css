@@ -151,88 +151,55 @@ html, .App, #root, .auth-wrapper {
 }
 
 .choose {
-
   width: 100%;
-
   background: #024c92;
-
   border-radius: 5px;
-
   text-align: center;
-
   height: 40px;
-
   margin-bottom: 10px;
-
   color: white;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
 }
 
 
 
 .chosen {
-
   width: 100%;
-
   background: green;
-
   border-radius: 5px;
-
   text-align: center;
-
   height: 40px;
-
   margin-bottom: 10px;
-
   color: white;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
 }
 
 
 
 .taken {
-
   width: 100%;
-
   background: gray;
-
   border-radius: 5px;
-
   text-align: center;
-
   height: 40px;
-
   margin-bottom: 10px;
-
   color: white;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
 }
 
 .result {
-
   width : 100%;
-
   height:40px;
-
 }
 
-
-
+.app {
+  border-radius: 5px;
+  border: 3px solid #024c92;
+  padding: 5px 5px 5px 5px;
+}
