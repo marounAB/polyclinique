@@ -88,7 +88,7 @@ class Login extends Component{
                         
                         <Button type="submit" color="primary">Submit</Button>
                         <p className="Sign-up text-right">
-                           <Link to="/Signup" Style="color:white;">Create account</Link>
+                           <Link to="/medicalfile" Style="color:white;">Create account</Link>
                         </p>
                     </Form>
                 </div>
