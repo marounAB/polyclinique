@@ -66,24 +66,24 @@ class TakeAppointment extends Component {
       console.log(timeslot);
       for(var i=0; i<today.length; ++i) {
         console.log(timeslot.id + " " + today[i].idTimeSlot);
-        if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == 1) {
+        if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
           return (
             <div className="col-6 col-md-3">
-              <div id={timeslot.id} className="chosen">{timeslot.start}-{timeslot.end}</div>
+              <div id={timeslot.id} className="chosen"><span>{timeslot.start}-{timeslot.end}</span></div>
             </div>  
           );
         } 
         if (timeslot.id == today[i].idTimeSlot) {
           return (
             <div className="col-6 col-md-3">
-              <div id={timeslot.id} className="taken">{timeslot.start}-{timeslot.end}</div>
+              <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
             </div>  
           );
         }
       }
       return (
         <div className="col-6 col-md-3" onClick={() => this.take(timeslot.id)}>
-          <div id={timeslot.id} className="choose">{timeslot.start}-{timeslot.end}</div>
+          <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
         </div>  
       );
     });
@@ -93,13 +93,13 @@ class TakeAppointment extends Component {
       if (date == this.state.selectedDate) {
         return (
           <div className="col-6 col-md-3" onClick={() => this.changeDate(date)}>
-            <div className="chosen">{date}</div>
+            <div className="chosen"><span>{date}</span></div>
           </div>
         );  
       }
       return (
         <div className="col-6 col-md-3" onClick={() => this.changeDate(date)}>
-          <div className="choose">{date}</div>
+          <div className="choose"><span>{date}</span></div>
         </div>
       );
     });
@@ -107,14 +107,16 @@ class TakeAppointment extends Component {
     return (
       <div>
         <Header />
-        <div className="container">
+        <div className="container PolyInfo">
           <div className="row text-center align-items-center">
-            <h1 className="col-12">Choose a Date</h1>
+            <h2 className="col-12">{this.props.doctor.name} {this.props.doctor.surname}</h2>
+            <h2 className="col-12 mb-3">Speciality : {this.props.doctor.speciality}</h2>
+            <h3 className="col-12">Choose a Date</h3>
             {datesList}
           </div>
           <hr />
           <div className="row text-center">
-            <h1 className="col-12">{this.state.selectedDate}</h1>
+            <h3 className="col-12 mb-3">Choose an available timeslot for your appointment in {this.state.selectedDate}</h3>
             {slots}
           </div>
         </div>

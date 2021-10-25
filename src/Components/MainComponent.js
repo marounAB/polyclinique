@@ -34,7 +34,7 @@ class Main extends Component{
                         <Route path={"/login"} component={Login} />
                         <Route path={"/home"} component={HomePage} />
                         <Route exact path={"/doctorsList"} component={() => <DoctorsList doctors={this.state.doctorsList} />} />
-                        <Route exact path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
+                        <Route exact path={"/doctorsList/:doctorId"} component={TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={HomeDoctor} />

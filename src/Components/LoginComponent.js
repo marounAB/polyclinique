@@ -13,8 +13,8 @@ class Login extends Component{
         this.state = {
             Email: '',
             Password: '',
-            users: [{Email:'cynthiaobei@gmail.com', Password: '123'}],
-            doctors: [{Email:'maroun@gmail.com', Password: '321'}]
+            users: [{id:1, Email:'cynthiaobei@gmail.com', Password: '123'}],
+            doctors: [{id:1, Email:'maroun@gmail.com', Password: '321'}]
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,6 +28,7 @@ class Login extends Component{
                 if(this.state.Password===this.state.users[i].Password){
                     console.log('Current State is: ' + JSON.stringify(this.state));
                     alert('Current State is: ' + JSON.stringify(this.state));
+                    localStorage.setItem('userId', this.state.users[i].id);
                     this.props.history.push("/home");
                 }
             }
@@ -37,6 +38,7 @@ class Login extends Component{
                 if(this.state.Password===this.state.doctors[j].Password){
                     console.log('Current State is: ' + JSON.stringify(this.state));
                     alert('Current State is: ' + JSON.stringify(this.state));
+                    localStorage.setItem('userId', this.state.doctors[j].id);
                     this.props.history.push("/homedoctor");
                 }
             }
