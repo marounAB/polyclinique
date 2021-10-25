@@ -31,17 +31,15 @@ class HeaderDoctor extends Component {
                                 <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-home fa-lg"></span>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/homedoctor'><span className="fa fa-plus fa-lg"></span>Personnal informormation</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>Schedule</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>Appointments</NavLink>
+                                <NavLink className="nav-link" to='/doctorinfo'><span className="fa fa-plus fa-lg"></span>Personnal informormation</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>List of Clients</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>Appointments</NavLink>
+                            </NavItem>
+                            
                             </Nav>
                         </Collapse>
                     </div>

@@ -8,6 +8,8 @@ import DoctorsList from './DoctorsListComponent';
 import { DOCTORS } from '../shared/doctors';
 import HomeDoctor from './HomeDoctor';
 import TakeAppointment from './TakeAppointmentComponent';
+import DoctorInfo from './DoctorInfo';
+import Infopatient from './Infopatient';
 
 class Main extends Component{
     constructor(props) {
@@ -34,6 +36,8 @@ class Main extends Component{
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={HomeDoctor} />
+                        <Route path={"/doctorinfo"} component={DoctorInfo} />
+                        <Route path={"/infopatient"} component={Infopatient} />
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>

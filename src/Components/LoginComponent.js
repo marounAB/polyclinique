@@ -26,8 +26,8 @@ class Login extends Component{
         for(var i=0;i<this.state.users.length;i++){
             if(this.state.Email===this.state.users[i].Email){
                 if(this.state.Password===this.state.users[i].Password){
-                    console.log('Current State is: ' + JSON.stringify(this.state));
-                    alert('Current State is: ' + JSON.stringify(this.state));
+               //     console.log('Current State is: ' + JSON.stringify(this.state));
+               //     alert('Current State is: ' + JSON.stringify(this.state));
                     this.props.history.push("/home");
                 }
             }
@@ -35,8 +35,8 @@ class Login extends Component{
         for(var j=0;j<this.state.doctors.length;j++){
             if(this.state.Email===this.state.doctors[j].Email){
                 if(this.state.Password===this.state.doctors[j].Password){
-                    console.log('Current State is: ' + JSON.stringify(this.state));
-                    alert('Current State is: ' + JSON.stringify(this.state));
+            //        console.log('Current State is: ' + JSON.stringify(this.state));
+            //       alert('Current State is: ' + JSON.stringify(this.state));
                     this.props.history.push("/homedoctor");
                 }
             }
@@ -59,21 +59,21 @@ class Login extends Component{
    
     render(){
         return(
-        <div className="container"  Style="padding-top: 100px; padding-left: 170px; background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,207,173,1) 0%, rgba(0,212,255,1) 100%); height:700px; width: 700px">
+        <div className="container"  Style="padding-top: 100px; padding-left: 50px; background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,207,173,1) 0%, rgba(0,212,255,1) 100%); height:700px; width: 700px">
             <div className="row row-content">
-                <div className="col-12 col-md-9"  Style="padding-top: 50px; padding-left: 5px;" >
+                <div className="col-12 col-md-9"  Style="padding-top: 50px; " >
                     <Form onSubmit={this.handleSubmit}>
                         <h3 Style="padding-bottom: 25px;">Login</h3>
                         <FormGroup row>
                             <Label htmlfor="email" md={3}>Email address</Label>
-                            <Col md={9}>
+                            <Col md={8}>
                                 <Input type="email" value={this.state.Email}  onChange={this.handleInputChange} name="Email" className="form-control" placeholder="Enter email" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
                             <Label md={3}>Password</Label>
-                            <Col md={9}>
+                            <Col md={8}>
                                 <Input htmlfor="password" type="password" value={this.state.Password}  onChange={this.handleInputChange} name="Password" className="form-control" placeholder="Enter password" />
                             </Col>
                         </FormGroup>

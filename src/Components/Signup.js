@@ -28,7 +28,7 @@ class Signup extends Component{
              alert('Current State is: ' + JSON.stringify(this.state));*/
              
 
-             this.props.history.push("/medicalfile");
+            this.props.history.push("/medicalfile");
             event.preventDefault();
         }
     

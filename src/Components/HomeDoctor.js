@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, withRouter, BrowserRouter, Link } from 'react-
 import HeaderDoctor from './HeaderDoctor';
 import SearchBar from './SearchBarPatients';
 import { Inject,ScheduleComponent,Day,Week,WorkWeek,Month,Agenda } from '@syncfusion/ej2-react-schedule';
+import DoctorAppointments from './DoctorAppointments';
 
 class HomeDoctor extends Component{
     render(){
@@ -17,10 +18,8 @@ class HomeDoctor extends Component{
                         </div>
                     </div>
                     <div className="row" Style="padding-top: 80px;">
-                        <h3>Schedule</h3>
-                        <ScheduleComponent>
-                            <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-                        </ScheduleComponent>
+                        <h3>Appointments</h3>
+                        <DoctorAppointments/>
                     </div>
                 </div>
 
