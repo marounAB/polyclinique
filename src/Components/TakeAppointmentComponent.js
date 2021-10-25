@@ -37,7 +37,7 @@ class TakeAppointment extends Component {
   take(id) {
     alert("doctor "+this.props.doctor.id + " timeslot " + id);
     const tmp = this.state.appointments;
-    tmp.push({idDoctor: this.props.doctor.id, idPatient: 1, idTimeSlot: id, date: new Date(this.state.selectedDate)});
+    tmp.push({idDoctor: this.props.doctor.id, idPatient: localStorage.getItem('userId'), idTimeSlot: id, date: new Date(this.state.selectedDate)});
     this.setState({appointments: tmp});
   }
 
