@@ -1,42 +1,42 @@
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem,
-Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
-import { useHistory } from "react-router-dom";
-
+import { Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
+import { PATIENTS } from '../shared/patients';
+import { DOCTORS } from '../shared/doctors';
 
 class FichierMedical extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            Firstname: '',
-            Lastname: '',
-            DateofBirth: '',
-            Address: '',
-            PhoneNumber: '',
-            Email: '',
-            Profession: '',
-            Activities: '',
-            MedicalHistory: '',
-            Insurance: ''
+            doctorEmails: DOCTORS.map(doctor => doctor.email),
+            patients: PATIENTS,
+            name: '',
+            surname: '',
+            dateOfBirth: new Date(),
+            address: '',
+            phoneNumber: '',
+            email: '',
+            profession: '',
+            activities: '',
+            medicalHistory: '',
+            insurance: ''
             
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     };
 
-  
-
-    handleSubmit(event) {   
-
-        
+    handleSubmit(event) {
+        if (this.state.patients.filter(patient => patient.email == this.state.email).length == 0
+        && this.state.doctorEmails.filter(e => e==this.state.email).length == 0) {
+            alert(JSON.stringify(this.state));
             this.props.history.push("/home");
-       
-            event.preventDefault();
+        } else {
+            alert("email already taken");
         }
+        event.preventDefault();
+    }
     
 
     handleInputChange(event) {
@@ -58,30 +58,30 @@ class FichierMedical extends Component{
         <div className="row row-content">
             <div className="col-12 col-md-6">
                 <FormGroup row>
-                        <Label htmlfor="Firstname" md={2}>Firstname</Label>
+                        <Label htmlfor="name" md={2}>First Name</Label>
                         <Col md={10}>
-                            <Input type="Firstname" value={this.state.Firstname}  onChange={this.handleInputChange} name="Firstname" className="form-control" placeholder="Enter Firstname" />
+                            <Input type="text" value={this.state.name}  onChange={this.handleInputChange} name="name" className="form-control" placeholder="Enter First Name" />
                         </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label md={2}>Lastname</Label>
+                    <Label htmlfor="surname" md={2}>Last Name</Label>
                     <Col md={10}>
-                        <Input htmlfor="Lastname" type="Lastname" value={this.state.Lastname}  onChange={this.handleInputChange} name="Lastname" className="form-control" placeholder="Enter Lastname" />
+                        <Input type="text" value={this.state.surname}  onChange={this.handleInputChange} name="surname" className="form-control" placeholder="Enter Last Name" />
                     </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label md={2}>Date of Birth</Label>
+                    <Label htmlfor="dateOfBirth" md={2}>Date of Birth</Label>
                     <Col md={10}>
-                        <Input htmlfor="DateofBirth" type="DateofBirth" value={this.state.DateofBirth}  onChange={this.handleInputChange} name="DateofBirth" className="form-control" placeholder="Enter Date of Birth" />
+                        <Input type="date" value={this.state.dateOfBirth}  onChange={this.handleInputChange} name="dateOfBirth" className="form-control" placeholder="Enter Date of Birth" />
                     </Col>
                 </FormGroup>
 
                 <FormGroup row>
                     <Label md={2}>Address</Label>
                     <Col md={10}>
-                        <Input htmlfor="Address" type="Address" value={this.state.Address}  onChange={this.handleInputChange} name="Address" className="form-control" placeholder="Enter Address" />
+                        <Input htmlfor="Address" type="text" value={this.state.address}  onChange={this.handleInputChange} name="address" className="form-control" placeholder="Enter Address" />
                     </Col>
                 </FormGroup>
                     </div>
@@ -90,29 +90,28 @@ class FichierMedical extends Component{
                     <FormGroup row>
                         <Label md={2}>Phone Number</Label>
                         <Col md={10}>
-                            <Input htmlfor="PhoneNumber" type="PhoneNumber" value={this.state.PhoneNumber}  onChange={this.handleInputChange} name="PhoneNumber" className="form-control" placeholder="Enter Phone Number" />
+                            <Input htmlfor="phoneNumber" type="tel" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}" value={this.state.phoneNumber}  onChange={this.handleInputChange} name="phoneNumber" className="form-control" placeholder="Enter Phone Number" />
                         </Col>
                     </FormGroup>
-
 
                     <FormGroup row>
                         <Label htmlfor="email" md={2}>Email address</Label>
                         <Col md={10}>
-                            <Input type="email" value={this.state.Email}  onChange={this.handleInputChange} name="Email" className="form-control" placeholder="Enter email" />
+                            <Input type="email" value={this.state.email}  onChange={this.handleInputChange} name="email" className="form-control" placeholder="Enter Email" />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row>
-                        <Label htmlfor="Profession" md={2}>Profession</Label>
+                        <Label htmlfor="profession" md={2}>Profession</Label>
                         <Col md={10}>
-                            <Input type="Profession" value={this.state.Profession}  onChange={this.handleInputChange} name="Profession" className="form-control" placeholder="Enter Profession" />
+                            <Input type="text" value={this.state.profession}  onChange={this.handleInputChange} name="profession" className="form-control" placeholder="Enter Profession" />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row>
-                        <Label htmlfor="Activities" md={2}>Activities</Label>
+                        <Label htmlfor="activities" md={2}>Activities</Label>
                         <Col md={10}>
-                            <Input type="Activities" value={this.state.Activities}  onChange={this.handleInputChange} name="Activities" className="form-control" placeholder="Enter Activities" />
+                            <Input type="text" value={this.state.activities}  onChange={this.handleInputChange} name="activities" className="form-control" placeholder="Enter Activities" />
                         </Col>
                     </FormGroup>
                     
@@ -126,8 +125,8 @@ class FichierMedical extends Component{
         <div className="row row-content" >
             <div className="col-12 col-md-9">
             <FormGroup row>
-            <Label htmlfor="MedicalHistory" >Write your medical antecedents</Label>
-                <textarea type="MedicalHistory" Style="height:300px; width:900px;" value={this.stateMedicalHistory}  onChange={this.handleInputChange} name="MedicalHistory" className="form-control" />
+            <Label htmlfor="medicalHistory" >Write your medical antecedents</Label>
+                <textarea type="text" Style="height:300px; width:900px;" value={this.stateMedicalHistory}  onChange={this.handleInputChange} name="medicalHistory" className="form-control" />
                     </FormGroup>
                 </div>
         </div>
@@ -144,26 +143,16 @@ class FichierMedical extends Component{
             <FormGroup row>
                 <Label md={4}>Insurance Name</Label>
                 <Col md={8}>
-                     <Input htmlfor="Insurance" type="Insurance" value={this.state.Insurance}  onChange={this.handleInputChange} name="Insurance" className="form-control" placeholder="Enter Insurance Name" />
+                     <Input htmlfor="insurance" type="text" value={this.state.insurance}  onChange={this.handleInputChange} name="insurance" className="form-control" placeholder="Enter Insurance Name" />
                 </Col>
                 </FormGroup>
             </div>
         </div>
         </div>
-
-        
-            
-      
-
         <Button type="submit" color="primary">Submit</Button>
         </Form>
-
-
         </div>
-        
-
-
-      )
+      );
 }
 }
 

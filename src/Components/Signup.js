@@ -12,10 +12,10 @@ class Signup extends Component{
         super(props);
 
         this.state = {
-            Firstname: '',
-            Lastname: '',
-            Email: '',
-            Password: ''
+            name: '',
+            surname: '',
+            email: '',
+            password: ''
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,35 +52,32 @@ class Signup extends Component{
                     <Form onSubmit={this.handleSubmit}>
                         <h3>Sign up</h3>
                         <FormGroup row>
-                            <Label htmlfor="Firstname" md={2}>Firstname</Label>
+                            <Label htmlfor="name" md={2}>First Name</Label>
                             <Col md={10}>
-                                <Input type="Firstname" value={this.state.Firstname}  onChange={this.handleInputChange} name="Firstname" className="form-control" placeholder="Enter Firstname" />
+                                <Input htmlfor="name" type="text" value={this.state.name}  onChange={this.handleInputChange} name="name" className="form-control" placeholder="Enter First Name" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
-                            <Label md={2}>Lastname</Label>
+                            <Label md={2}>Last Name</Label>
                             <Col md={10}>
-                                <Input htmlfor="Lastname" type="Lastname" value={this.state.Lastname}  onChange={this.handleInputChange} name="Lastname" className="form-control" placeholder="Enter Lastname" />
+                                <Input htmlfor="surname" type="text" value={this.state.surname}  onChange={this.handleInputChange} name="surname" className="form-control" placeholder="Enter Last Name" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
-                            <Label htmlfor="email" md={2}>Email address</Label>
+                            <Label htmlfor="email" md={2}>Email Address</Label>
                             <Col md={10}>
-                                <Input type="email" value={this.state.Email}  onChange={this.handleInputChange} name="Email" className="form-control" placeholder="Enter email" />
+                                <Input htmlfor="email" type="email" value={this.state.email}  onChange={this.handleInputChange} name="email" className="form-control" placeholder="Enter Email" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
                             <Label md={2}>Password</Label>
                             <Col md={10}>
-                                <Input htmlfor="password" type="password" value={this.state.Password}  onChange={this.handleInputChange} name="Password" className="form-control" placeholder="Enter password" />
+                                <Input htmlfor="password" type="password" value={this.state.password}  onChange={this.handleInputChange} name="password" className="form-control" placeholder="Enter Password" />
                             </Col>
                         </FormGroup>
-
-
-                        
                         <Button type="submit" color="primary">Submit</Button>
                     </Form>
                 </div>

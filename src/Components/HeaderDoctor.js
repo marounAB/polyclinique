@@ -8,15 +8,25 @@ class HeaderDoctor extends Component {
     
         this.toggleNav = this.toggleNav.bind(this);
         this.state = {
-          isNavOpen: false
+          isNavOpen: false,
+          show: "d-none"
         };
       }
 
-      toggleNav() {
+    toggleNav() {
         this.setState({
-          isNavOpen: !this.state.isNavOpen
+            isNavOpen: !this.state.isNavOpen
         });
-      }
+    }
+
+    componentDidMount() {
+        if (localStorage.getItem('admin') == 1) {
+            this.setState({
+                show: ""
+            })
+        }
+    }
+    
 
     render() {
         return(
@@ -39,7 +49,9 @@ class HeaderDoctor extends Component {
                             <NavItem>
                                 <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>Appointments</NavLink>
                             </NavItem>
-                            
+                            <NavItem>
+                                <NavLink className={`nav-link ${this.state.show}`}  to='/addDoctor'><span className="fa fa-list fa-lg"></span>Add new Doctor</NavLink>
+                            </NavItem>
                             </Nav>
                         </Collapse>
                     </div>

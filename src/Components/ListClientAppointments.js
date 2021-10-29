@@ -54,7 +54,7 @@ class ListClientAppointments extends Component {
             <div>
                 <Header />
                 <div className="container">
-                    <div className="row">
+                    <div className="row mb-3">
                         {listApps}
                     </div>
                 </div>

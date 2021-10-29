@@ -11,6 +11,7 @@ import TakeAppointment from './TakeAppointmentComponent';
 import DoctorInfo from './DoctorInfo';
 import Infopatient from './Infopatient';
 import ListClientAppointments from './ListClientAppointments';
+import addDoctor from './AddNewDoctorComponent';
 
 class Main extends Component{
     constructor(props) {
@@ -40,6 +41,7 @@ class Main extends Component{
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:"} component={Infopatient} />
                         <Route path="/listClientAppointments" component={ListClientAppointments} />
+                        <Route path="/addDoctor" component={addDoctor} />
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>
