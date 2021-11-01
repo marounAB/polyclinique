@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Login from './LoginComponent';
-import { Switch, Route, Redirect, useParams } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import HomePage from './HomeClientComponent';
 import Signup from './Signup';
 import FichierMedical from './Fichiermedical';
@@ -12,7 +12,14 @@ import DoctorInfo from './DoctorInfo';
 import Infopatient from './Infopatient';
 import ListClientAppointments from './ListClientAppointments';
 import addDoctor from './AddNewDoctorComponent';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    return {
+      appointments: state.appointments
+    }
+  }
+  
 class Main extends Component{
     constructor(props) {
         super(props);
@@ -24,7 +31,8 @@ class Main extends Component{
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
-                <TakeAppointment doctor={this.state.doctorsList.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} />
+                <TakeAppointment doctor={this.state.doctorsList.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
+                appointments={this.props.appointments}/>
             );
         };
 
@@ -49,8 +57,4 @@ class Main extends Component{
         }
 }
 
-export default Main;
-
-
-
-
+export default withRouter(connect(mapStateToProps,)(Main));

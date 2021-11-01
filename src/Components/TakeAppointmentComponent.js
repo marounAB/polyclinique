@@ -11,7 +11,7 @@ class TakeAppointment extends Component {
     this.state={
       timeslots: TIMESLOTS,
       selectedDate: "",
-      appointments: APPOINTMENTS
+      appointments: this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id)
     };
 
   }
@@ -57,7 +57,7 @@ class TakeAppointment extends Component {
     // console.log(this.state.appointments[0].date.toLocaleDateString());
     // console.log(this.state.selectedDate);
     // console.log(this.props.doctor.id)
-    const today = this.state.appointments.filter(app => (app.date.toLocaleDateString()==this.state.selectedDate && app.idDoctor==this.props.doctor.id));
+    const today = this.state.appointments.filter(app => (app.date.toLocaleDateString()==this.state.selectedDate));
     // console.log(today);
     // console.log(this.state.timeslots);
     
