@@ -16,45 +16,45 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
     return {
-      appointments: state.appointments
+      appointments: state.appointments,
+      doctors: state.doctors,
+      patients: state.patients
     }
   }
   
 class Main extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            doctorsList: DOCTORS
-        };
     }
 
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
-                <TakeAppointment doctor={this.state.doctorsList.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
+                <TakeAppointment doctor={this.props.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
                 appointments={this.props.appointments}/>
             );
         };
+
+        const PatientById = ({match}) => {
+            return (
+                <Infopatient patient={this.props.patients.filter(patient => patient.id === parseInt(match.params.patientId,10))[0]} />
+            );
+        }
 
         return(
                 <div>
                     <Switch>
                         <Route path={"/login"} component={Login} />
                         <Route path={"/home"} component={HomePage} />
-                        <Route exact path={"/doctorsList"} component={() => <DoctorsList doctors={this.state.doctorsList} />} />
+                        <Route exact path={"/doctorsList"} component={() => <DoctorsList doctors={this.props.doctors} />} />
                         <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
-                        <Route path={"/homedoctor"} component={HomeDoctor} />
+                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients}/>} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
-<<<<<<< HEAD
-                    
-                        <Route path={"/infopatient/:patientId"} component={Infopatient} />
-=======
-                        <Route path={"/infopatient/:"} component={Infopatient} />
+                        <Route path={"/infopatient/:patientId"} component={PatientById} />
                         <Route path="/listClientAppointments" component={ListClientAppointments} />
                         <Route path="/addDoctor" component={addDoctor} />
->>>>>>> 993ef6bc456f3834aa21cefb9ad8db6dfbfe7a4d
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>

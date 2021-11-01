@@ -14,7 +14,7 @@ class HomeDoctor extends Component{
                     <div className="row">
                         <h3>List of clients</h3>
                         <div className="col-12" Style="padding-top:40px;">
-                            <SearchBar/>
+                            <SearchBar patients={this.props.patients}/>
                         </div>
                     </div>
                     <div className="row" Style="padding-top: 80px;">

@@ -34,7 +34,7 @@ class HeaderDoctor extends Component {
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/homedoctor"><img id="logo" src='assets/images/logo.jpg' width="150" alt='Polyclinic' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/homedoctor"><img id="logo" src='https://drive.google.com/thumbnail?id=1hqb4oXA38zLLmb4I-fg9xVEyiJaSeWX_' width="150" alt='Polyclinic' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>

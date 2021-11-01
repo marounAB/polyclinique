@@ -7,5 +7,12 @@ export const PATIENTS = [
         email:'cynthiaobei@gmail.com', 
         password: '123'
 
+    },
+    {
+        id: 2,
+        name: "Lea",
+        surname: "khoury",
+        email: "lea.khoury@gmail.com",
+        password: "lala"
     }
 ]
