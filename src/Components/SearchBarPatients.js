@@ -6,7 +6,6 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import { Breadcrumb, BreadcrumbItem,
 Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
-import { Patients } from '../shared/patients';
 
 //import { useHistory } from 'react-router-dom';
 
@@ -14,6 +13,27 @@ import { Patients } from '../shared/patients';
 function SearchBar(){
     
      const  [searchTerm, setSearchTerm] = useState("");
+     const Patients = [
+        {
+            id: 0,
+            firstname: "Patient1",
+            lastname:"lastname1"
+           
+           
+        },
+        {
+            id: 1,
+            firstname: "Patient2",
+            lastname: "lastname2"
+        
+         
+        },
+        {
+            id:2,
+            firstname: "Patient3",
+            lastname: "lastname3"
+        }];
+    
 
 
     

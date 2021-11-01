@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { AppointmentPicker } from 'react-appointment-picker';
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import { TIMESLOTS } from '../shared/timeslots';
@@ -12,7 +11,7 @@ class TakeAppointment extends Component {
     this.state={
       timeslots: TIMESLOTS,
       selectedDate: "",
-      appointments: APPOINTMENTS
+      appointments: this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id)
     };
 
   }
@@ -37,7 +36,7 @@ class TakeAppointment extends Component {
   take(id) {
     alert("doctor "+this.props.doctor.id + " timeslot " + id);
     const tmp = this.state.appointments;
-    tmp.push({idDoctor: this.props.doctor.id, idPatient: 1, idTimeSlot: id, date: new Date(this.state.selectedDate)});
+    tmp.push({idDoctor: this.props.doctor.id, idPatient: localStorage.getItem('userId'), idTimeSlot: id, date: new Date(this.state.selectedDate)});
     this.setState({appointments: tmp});
   }
 
@@ -58,7 +57,7 @@ class TakeAppointment extends Component {
     // console.log(this.state.appointments[0].date.toLocaleDateString());
     // console.log(this.state.selectedDate);
     // console.log(this.props.doctor.id)
-    const today = this.state.appointments.filter(app => (app.date.toLocaleDateString()==this.state.selectedDate && app.idDoctor==this.props.doctor.id));
+    const today = this.state.appointments.filter(app => (app.date.toLocaleDateString()==this.state.selectedDate));
     // console.log(today);
     // console.log(this.state.timeslots);
     

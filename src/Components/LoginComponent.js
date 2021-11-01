@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem,
 Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
-import { useHistory } from "react-router-dom";
+import { DOCTORS } from '../shared/doctors';
+import { PATIENTS } from '../shared/patients';
 
 class Login extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            Email: '',
-            Password: '',
-            users: [{id:1, Email:'cynthiaobei@gmail.com', Password: '123'}],
-            doctors: [{id:1, Email:'maroun@gmail.com', Password: '321'}]
+            email: '',
+            password: '',
+            users: PATIENTS,
+            doctors: DOCTORS
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,13 +25,13 @@ class Login extends Component{
 
     handleSubmit(event) {   
         for(var i=0;i<this.state.users.length;i++){
-            if(this.state.Email===this.state.users[i].Email){
-                if(this.state.Password===this.state.users[i].Password){
+            if(this.state.email===this.state.users[i].email){
+                if(this.state.password===this.state.users[i].password){
 
               
 
-               //     console.log('Current State is: ' + JSON.stringify(this.state));
-              //      alert('Current State is: ' + JSON.stringify(this.state));
+                //    console.log('Current State is: ' + JSON.stringify(this.state));
+                //    alert('Current State is: ' + JSON.stringify(this.state));
                     localStorage.setItem('userId', this.state.users[i].id);
 
                     this.props.history.push("/home");
@@ -38,12 +39,13 @@ class Login extends Component{
             }
         }
         for(var j=0;j<this.state.doctors.length;j++){
-            if(this.state.Email===this.state.doctors[j].Email){
-                if(this.state.Password===this.state.doctors[j].Password){
+            if(this.state.email===this.state.doctors[j].email){
+                if(this.state.password===this.state.doctors[j].password){
 
                   //  console.log('Current State is: ' + JSON.stringify(this.state));
                   //  alert('Current State is: ' + JSON.stringify(this.state));
                     localStorage.setItem('userId', this.state.doctors[j].id);
+                    localStorage.setItem('admin', this.state.doctors[j].admin);
 
                     this.props.history.push("/homedoctor");
                 }
@@ -58,7 +60,7 @@ class Login extends Component{
         const target = event.target;
         const value = target.value;
         const name = target.name;
-    
+
         this.setState({
             [name]: value
         });
@@ -75,14 +77,14 @@ class Login extends Component{
                         <FormGroup row>
                             <Label htmlfor="email" md={3}>Email address</Label>
                             <Col md={8}>
-                                <Input type="email" value={this.state.Email}  onChange={this.handleInputChange} name="Email" className="form-control" placeholder="Enter email" />
+                                <Input type="email" value={this.state.email}  onChange={this.handleInputChange} name="email" className="form-control" placeholder="Enter email" />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
                             <Label md={3}>Password</Label>
                             <Col md={8}>
-                                <Input htmlfor="password" type="password" value={this.state.Password}  onChange={this.handleInputChange} name="Password" className="form-control" placeholder="Enter password" />
+                                <Input htmlfor="password" type="password" value={this.state.password}  onChange={this.handleInputChange} name="password" className="form-control" placeholder="Enter password" />
                             </Col>
                         </FormGroup>
                         
