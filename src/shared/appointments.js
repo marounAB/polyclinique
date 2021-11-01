@@ -1,8 +1,10 @@
 var today = new Date();
-var tmp = new Date(today);
-tmp.setDate(tmp.getDate()+2)
-var tmp2 = new Date(today);
-tmp2.setDate(tmp.getDate()+1)
+var tmp3 = new Date(today);
+tmp3.setDate(tmp3.getDate()+2)
+var tmp4 = new Date(today);
+tmp4.setDate(tmp3.getDate()+1);
+var tmp = tmp3.toLocaleDateString();
+var tmp2 = tmp4.toLocaleDateString();
 
 export const APPOINTMENTS = [
     {

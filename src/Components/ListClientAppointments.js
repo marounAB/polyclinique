@@ -11,7 +11,7 @@ class ListClientAppointments extends Component {
 
         this.state = {
             appointments: APPOINTMENTS.filter((app) => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {
-                return a.date - b.date;
+                return (new Date(a.date)) - (new Date(b.date));
             }),
             timeslots: TIMESLOTS,
             doctors: DOCTORS
@@ -37,7 +37,7 @@ class ListClientAppointments extends Component {
                                 <h5>{doctor.name} {doctor.surname}</h5>
                                 <h6>Speciality {doctor.speciality}</h6>
                                 <div>
-                                    date: {app.date.toLocaleDateString()} <br/>
+                                    date: {app.date} <br/>
                                     time: {time.start} - {time.end}
                                 </div>
                             </div>

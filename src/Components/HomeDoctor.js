@@ -19,7 +19,7 @@ class HomeDoctor extends Component{
                     </div>
                     <div className="row" Style="padding-top: 80px;">
                         <h3>Appointments</h3>
-                        <DoctorAppointments/>
+                        <DoctorAppointments patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots}/>
                     </div>
                 </div>
 

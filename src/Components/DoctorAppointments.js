@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -8,57 +7,53 @@ import {
   AllDayPanel,
   AppointmentTooltip
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { ListAppointments } from '../shared/doctorappointments';
 
-
-import { Button} from 'reactstrap';
-
-
-
-
-
-function DoctorAppointments(){
-
+function DoctorAppointments(props){
+  const Appointment = ({
+    children, style, ...restProps
+  }) => (
     
+    <Appointments.Appointment
+      {...restProps}
+      style={{
+        ...style,
+        borderRadius: '8px',
+        height:'100%',
+        width:'100%'
+      }} 
+    >
+      {children}
+    </Appointments.Appointment>
+  );
+  
+  const ListAppointments = props.appointments.map(app => {
+    var patient = props.patients.filter(p => p.id === app.idPatient)[0];
+    var p = patient.name + " " + patient.surname;
+    var timeslot = props.timeslots.filter(t => t.id === app.idTimeSlot)[0];
+    var sd = new Date(app.date + " " + timeslot.start + ":00");
+    var ed = new Date(app.date + " " + timeslot.end + ":00");
+    return (
+      {
+        title: p,
+        startDate: sd,
+        endDate: ed,
+        id: app.id,
+        location: ''
+      }
+      )
+  });
 
-        const Appointment = ({
-          children, style, ...restProps
-        }) => (
-          
-          <Appointments.Appointment
-            {...restProps}
-            style={{
-              ...style,
-              borderRadius: '8px',
-              height:'100%',
-              width:'100%'
-            }} 
-          >
-            {children}
-          </Appointments.Appointment>
-          
-     
-        );
-
-     
-
-
-   
-
-    return(
-        
+  return(      
     <Scheduler
       data={ListAppointments}
       height={660}
-    
-      
     >
       <ViewState
-         currentDate ={new Date(2021,10,25)}
+         currentDate ={new Date()}
       />
       <WeekView
         startDayHour={8}
-        endDayHour={18}
+        endDayHour={17}
         cellDuration={30}
       />
       <Appointments appointmentComponent={Appointment} >
@@ -66,14 +61,10 @@ function DoctorAppointments(){
         </Appointments>
         <AppointmentTooltip showOpenButton />
   
- 
       <AllDayPanel />
     </Scheduler>
- 
-)
-
-
-}
+    )
+  }
 
 export default DoctorAppointments;
   

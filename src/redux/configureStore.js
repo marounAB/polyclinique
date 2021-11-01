@@ -4,17 +4,15 @@ import logger from 'redux-logger';
 import { Appointments } from './appointments';
 import { Doctors } from './doctors';
 import { Patients } from './patients';
+import { Timeslots } from './timeslots';
 
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
             appointments: Appointments,
             doctors: Doctors,
-            patients: Patients
-            // dishes: Dishes,
-            // comments: Comments,
-            // promotions: Promotions,
-            // leaders: Leaders,
+            patients: Patients,
+            timeslots: Timeslots
             // ...createForms({
             //     feedback: InitialFeedback
             // })

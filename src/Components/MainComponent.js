@@ -18,7 +18,8 @@ const mapStateToProps = state => {
     return {
       appointments: state.appointments,
       doctors: state.doctors,
-      patients: state.patients
+      patients: state.patients,
+      timeslots: state.timeslots
     }
   }
   
@@ -31,7 +32,7 @@ class Main extends Component{
         const TakeAppointmentById = ({match}) => {
             return (
                 <TakeAppointment doctor={this.props.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
-                appointments={this.props.appointments}/>
+                appointments={this.props.appointments} timeslots={this.props.timeslots}/>
             );
         };
 
@@ -50,7 +51,7 @@ class Main extends Component{
                         <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
-                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients}/>} />
+                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots}/>} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
                         <Route path="/listClientAppointments" component={ListClientAppointments} />
