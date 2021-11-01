@@ -6,6 +6,10 @@ import { Inject,ScheduleComponent,Day,Week,WorkWeek,Month,Agenda } from '@syncfu
 import DoctorAppointments from './DoctorAppointments';
 
 class HomeDoctor extends Component{
+    constructor(props) {
+        super(props);
+    }
+
     render(){
         return(
             <div>

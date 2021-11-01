@@ -51,10 +51,10 @@ class Main extends Component{
                         <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
-                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots}/>} />
+                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}/>} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
-                        <Route path="/listClientAppointments" component={ListClientAppointments} />
+                        <Route path="/listClientAppointments" component={() => <ListClientAppointments timeslots={this.props.timeslots} doctors={this.props.doctors} appointments={this.props.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}/>} />
                         <Route path="/addDoctor" component={addDoctor} />
                         <Redirect to={"/login"} />
                     </Switch>
