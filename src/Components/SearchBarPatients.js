@@ -6,6 +6,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import { Breadcrumb, BreadcrumbItem,
 Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
+import { Patients } from '../shared/patients';
 
 //import { useHistory } from 'react-router-dom';
 
@@ -14,16 +15,7 @@ function SearchBar(){
     
      const  [searchTerm, setSearchTerm] = useState("");
 
-     const patients= [{firstname:"Marc",lastname:"Helou",id:1},
-     {firstname:"Lea", lastname:"Khoury",id:2},
-     {firstname:"Lea", lastname:"Khoury",id:3}
-    
-     ];
 
-    
-
-    
-     
     
     return(
         <div className="container">
@@ -34,7 +26,7 @@ function SearchBar(){
             }}
             />
             <div className="result"  Style="height: 70px; width: 400px; overflow:hidden; overflow-y:auto; padding-top:20px;">
-            {patients.filter((val) => {
+            {Patients.filter((val) => {
                 if (searchTerm == "") {
                     return val
                 } else if (val.firstname.toLowerCase().includes(searchTerm.toLowerCase())){
@@ -42,8 +34,9 @@ function SearchBar(){
                 }
             }).map((val,key) => {
                 return (
-                
-                   <div to={ `/infopatient/${val._id}` }type="click" >{val.firstname} {val.lastname}</div>
+                <div className="container">
+                   <Link to={ `/infopatient/${val.id}` } type="click" >{val.firstname} {val.lastname}</Link>
+                   </div>
                 );
             })}
             </div>

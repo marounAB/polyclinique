@@ -37,7 +37,8 @@ class Main extends Component{
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={HomeDoctor} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
-                        <Route path={"/infopatient/:"} component={Infopatient} />
+                    
+                        <Route path={"/infopatient/:patientId"} component={Infopatient} />
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>
