@@ -5,7 +5,6 @@ import HomePage from './HomeClientComponent';
 import Signup from './Signup';
 import FichierMedical from './Fichiermedical';
 import DoctorsList from './DoctorsListComponent';
-import { DOCTORS } from '../shared/doctors';
 import HomeDoctor from './HomeDoctor';
 import TakeAppointment from './TakeAppointmentComponent';
 import DoctorInfo from './DoctorInfo';
@@ -13,6 +12,8 @@ import Infopatient from './Infopatient';
 import ListClientAppointments from './ListClientAppointments';
 import addDoctor from './AddNewDoctorComponent';
 import { connect } from 'react-redux';
+import { addAppointment } from '../redux/ActionCreators';
+import { deleteAppointment } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -23,16 +24,36 @@ const mapStateToProps = state => {
     }
   }
   
+const mapDispatchToProps = dispatch => ({
+  
+    addAppointment: (idPatient, idDoctor, idTimeSlot, date) => 
+        dispatch( addAppointment(idPatient, idDoctor, idTimeSlot, date)),
+    deleteAppointment : (id) => dispatch(deleteAppointment(id))
+  })
+  
 class Main extends Component{
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        var tmpDate = new Date();
+        var i = 0;
+        while (i<1) {
+            tmpDate.setDate(tmpDate.getDate()+1);
+            if (tmpDate.getDay()!=0 && tmpDate.getDay()!=6) {
+                localStorage.setItem("selectedDate", tmpDate.toLocaleDateString());
+                i=i+1;
+            }
+        }
     }
 
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
                 <TakeAppointment doctor={this.props.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
-                appointments={this.props.appointments} timeslots={this.props.timeslots}/>
+                appointments={this.props.appointments} timeslots={this.props.timeslots}
+                addAppointment={this.props.addAppointment}/>
             );
         };
 
@@ -54,7 +75,11 @@ class Main extends Component{
                         <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}/>} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
-                        <Route path="/listClientAppointments" component={() => <ListClientAppointments timeslots={this.props.timeslots} doctors={this.props.doctors} appointments={this.props.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}/>} />
+                        <Route path="/listClientAppointments" component={() => <ListClientAppointments 
+                        deleteAppointment={this.props.deleteAppointment}
+                        timeslots={this.props.timeslots} doctors={this.props.doctors} 
+                        appointments={this.props.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}
+                        />} />
                         <Route path="/addDoctor" component={addDoctor} />
                         <Redirect to={"/login"} />
                     </Switch>
@@ -63,4 +88,4 @@ class Main extends Component{
         }
 }
 
-export default withRouter(connect(mapStateToProps,)(Main));
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));

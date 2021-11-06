@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
+import { connect } from 'react-redux';
+import { addAppointment } from '../redux/ActionCreators';
+import { withRouter } from 'react-router';
+
+// const mapDispatchToProps = dispatch => ({
+  
+//   addAppointment: (idPatient, idDoctor, idTimeSlot, date) => 
+//       dispatch( addAppointment(idPatient, idDoctor, idTimeSlot, date))
+// })
+
+// const mapStateToProps = state => {
+//   return {
+//     appointments: state.appointments,
+//     doctors: state.doctors,
+//     patients: state.patients,
+//     timeslots: state.timeslots
+//   }
+// }
 
 class TakeAppointment extends Component {
   constructor(props) {
@@ -8,33 +26,23 @@ class TakeAppointment extends Component {
 
     this.state={
       selectedDate: "",
-      appointments: this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id)
     };
-
   }
 
   changeDate(d) {
     this.setState({selectedDate: d});
+    localStorage.setItem("selectedDate", d);
   }
 
   componentDidMount() {
-    var tmpDate = new Date();
-    var i = 0;
-    while (i<1) {
-      tmpDate.setDate(tmpDate.getDate()+1);
-      if (tmpDate.getDay()!=0 && tmpDate.getDay()!=6) {
-        this.setState({selectedDate: tmpDate.toLocaleDateString()});
-        // this.setState({selectedDate: tmpDate});
-        i=i+1;
-      }
-    }
+    this.setState({
+      selectedDate: localStorage.getItem("selectedDate")
+    });
   }
 
   take(id) {
     alert("doctor "+this.props.doctor.id + " timeslot " + id);
-    const tmp = this.state.appointments;
-    tmp.push({idDoctor: this.props.doctor.id, idPatient: localStorage.getItem('userId'), idTimeSlot: id, date: this.state.selectedDate});
-    this.setState({appointments: tmp});
+    this.props.addAppointment(localStorage.getItem('userId'), this.props.doctor.id, id, this.state.selectedDate);
   }
 
   render() {
@@ -49,12 +57,12 @@ class TakeAppointment extends Component {
       }
     }
 
-    const today = this.state.appointments.filter(app => (app.date==this.state.selectedDate));
+    const today = this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id  && app.date==this.state.selectedDate);
     
     const slots = this.props.timeslots.map(timeslot => {
-      console.log(timeslot);
+      // console.log(timeslot);
       for(var i=0; i<today.length; ++i) {
-        console.log(timeslot.id + " " + today[i].idTimeSlot);
+        // console.log(timeslot.id + " " + today[i].idTimeSlot);
         if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
           return (
             <div className="col-6 col-md-3">
@@ -115,4 +123,5 @@ class TakeAppointment extends Component {
   }
 }
 
+// export default withRouter(connect(mapStateToProps,mapDispatchToProps)(TakeAppointment));
 export default TakeAppointment;
