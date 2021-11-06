@@ -14,6 +14,9 @@ import addDoctor from './AddNewDoctorComponent';
 import { connect } from 'react-redux';
 import { addAppointment } from '../redux/ActionCreators';
 import { deleteAppointment } from '../redux/ActionCreators';
+import ListDescriptions from './ClientDescriptionsComponent';
+import TodayAppointments from './TodayAppointments';
+import { addDescription } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -28,7 +31,8 @@ const mapDispatchToProps = dispatch => ({
   
     addAppointment: (idPatient, idDoctor, idTimeSlot, date) => 
         dispatch( addAppointment(idPatient, idDoctor, idTimeSlot, date)),
-    deleteAppointment : (id) => dispatch(deleteAppointment(id))
+    deleteAppointment : (id) => dispatch(deleteAppointment(id)),
+    addDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(addDescription(id, idPatient, idDoctor, idTimeSlot, date, desc))
   })
   
 class Main extends Component{
@@ -81,6 +85,15 @@ class Main extends Component{
                         appointments={this.props.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}
                         />} />
                         <Route path="/addDoctor" component={addDoctor} />
+                        <Route path="/listClientDescriptions" component={() => <ListDescriptions 
+                        timeslots={this.props.timeslots} doctors={this.props.doctors} 
+                        appointments={this.props.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(b.date)) - (new Date(a.date));})}
+                        />} />
+                        <Route path="/todayAppointments" component={() => <TodayAppointments 
+                        addDescription={this.props.addDescription}
+                        patients={this.props.patients} 
+                        appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem("userId") && app.date == (new Date).toLocaleDateString())} 
+                        timeslots={this.props.timeslots}/>}/>
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>

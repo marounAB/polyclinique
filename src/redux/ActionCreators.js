@@ -16,3 +16,15 @@ export const deleteAppointment = (id) => ({
         id: id
     }
 });
+
+export const addDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => ({
+    type: ActionTypes.ADD_DESCRIPTION,
+    payload: {
+        id: id,
+        idPatient: idPatient,
+        idDoctor: idDoctor,
+        idTimeSlot: idTimeSlot,
+        date: date,
+        description: desc
+    }
+})

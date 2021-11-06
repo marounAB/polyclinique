@@ -50,6 +50,9 @@ class HeaderDoctor extends Component {
                                 <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-list fa-lg"></span>Appointments</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink className="nav-link"  to='/todayAppointments'><span className="fa fa-list fa-lg"></span>Today's Appointments</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink className={`nav-link ${this.state.show}`}  to='/addDoctor'><span className="fa fa-list fa-lg"></span>Add new Doctor</NavLink>
                             </NavItem>
                             </Nav>

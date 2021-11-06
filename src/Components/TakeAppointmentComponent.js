@@ -42,7 +42,7 @@ class TakeAppointment extends Component {
 
   take(id) {
     alert("doctor "+this.props.doctor.id + " timeslot " + id);
-    this.props.addAppointment(localStorage.getItem('userId'), this.props.doctor.id, id, this.state.selectedDate);
+    this.props.addAppointment(parseInt(localStorage.getItem('userId')), this.props.doctor.id, id, this.state.selectedDate);
   }
 
   render() {
