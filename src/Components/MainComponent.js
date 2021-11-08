@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { addAppointment } from '../redux/ActionCreators';
 import { deleteAppointment } from '../redux/ActionCreators';
 import ListDescriptions from './ClientDescriptionsComponent';
-import TodayAppointments from './TodayAppointments';
+import TodayAppointments from './TodayAppointmentsComponent';
 import { addDescription } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
@@ -76,7 +76,8 @@ class Main extends Component{
                         <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
-                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}/>} />
+                        <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}
+                        addAppointment={this.props.addAppointment} deleteAppointment={this.props.deleteAppointment} />} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
                         <Route path="/listClientAppointments" component={() => <ListClientAppointments 

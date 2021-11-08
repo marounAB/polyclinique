@@ -1,11 +1,7 @@
-import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem,
 Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
-import { useHistory } from "react-router-dom";
-
+import HeaderDoctor from './HeaderDoctor';
 
 class DoctorInfo extends Component{
     constructor(props){
@@ -14,6 +10,8 @@ class DoctorInfo extends Component{
 
     render(){
         return(
+            <div>
+            <HeaderDoctor />
             <div className="container-fluid">
             <Form>
             <div className="container" Style="padding-top: 40px;">
@@ -70,8 +68,7 @@ class DoctorInfo extends Component{
 
                 </Form>
                 </div>
-                
-
+                </div>
         )
     }
 
