@@ -1,6 +1,13 @@
 
 export const PATIENTS = [
     {
+        id: 0,
+        name: "Dummy",
+        surname: "Patient",
+        email: "",
+        password: "",
+    },
+    {
         id: 1,
         name: "Cynthia",
         surname: "Obei" ,
