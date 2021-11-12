@@ -18,6 +18,7 @@ import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
 import { addDescription } from '../redux/ActionCreators';
 
+ 
 const mapStateToProps = state => {
     return {
       appointments: state.appointments,
@@ -61,12 +62,15 @@ class Main extends Component{
             );
         };
 
+        
+
         const PatientById = ({match}) => {
             return (
-                <Infopatient patient={this.props.patients.filter(patient => patient.id === parseInt(match.params.patientId,10))[0]} />
+                <Infopatient patient={this.props.patients.filter(patient => patient.id === parseInt(match.params.patientId,10))[0]} appointments={this.props.appointments} timeslots={this.props.timeslots}/>
             );
         }
 
+    
         return(
                 <div>
                     <Switch>
@@ -95,6 +99,7 @@ class Main extends Component{
                         patients={this.props.patients} 
                         appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem("userId") && app.date == (new Date).toLocaleDateString())} 
                         timeslots={this.props.timeslots}/>}/>
+                       
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>
