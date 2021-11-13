@@ -17,6 +17,8 @@ import { deleteAppointment } from '../redux/ActionCreators';
 import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
 import { addDescription } from '../redux/ActionCreators';
+import { login } from '../redux/ActionCreators';
+
 
  
 const mapStateToProps = state => {
@@ -35,6 +37,8 @@ const mapDispatchToProps = dispatch => ({
     deleteAppointment : (id) => dispatch(deleteAppointment(id)),
     addDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(addDescription(id, idPatient, idDoctor, idTimeSlot, date, desc))
   })
+
+
   
 class Main extends Component{
     constructor(props) {

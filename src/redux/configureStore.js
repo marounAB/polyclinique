@@ -5,6 +5,10 @@ import { Appointments } from './appointments';
 import { Doctors } from './doctors';
 import { Patients } from './patients';
 import { Timeslots } from './timeslots';
+import auth from "./auth";
+import message from "./message";
+
+
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -12,7 +16,10 @@ export const ConfigureStore = () => {
             appointments: Appointments,
             doctors: Doctors,
             patients: Patients,
-            timeslots: Timeslots
+            timeslots: Timeslots,
+            auth: auth,
+            message: message
+            
             // ...createForms({
             //     feedback: InitialFeedback
             // })
