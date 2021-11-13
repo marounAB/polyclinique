@@ -28,3 +28,20 @@ export const addDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) 
         description: desc
     }
 })
+
+export const addAvailability = (idDoctor, date, startTime, endTime) => ({
+    type: ActionTypes.ADD_AVAILABILITY,
+    payload: {
+        idDoctor: idDoctor,
+        date: date,
+        startTime: startTime,
+        endTime: endTime
+    }
+})
+
+export const deleteAvailability = (id) => ({
+    type: ActionTypes.DELETE_AVAILABILITY,
+    payload: {
+        id: id
+    }
+})

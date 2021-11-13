@@ -58,31 +58,51 @@ class TakeAppointment extends Component {
     }
 
     const today = this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id  && app.date==this.state.selectedDate);
-    
-    const slots = this.props.timeslots.map(timeslot => {
-      // console.log(timeslot);
-      for(var i=0; i<today.length; ++i) {
-        // console.log(timeslot.id + " " + today[i].idTimeSlot);
-        if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
-          return (
-            <div className="col-6 col-md-3">
-              <div id={timeslot.id} className="chosen"><span>{timeslot.start}-{timeslot.end}</span></div>
-            </div>  
-          );
-        } 
-        if (timeslot.id == today[i].idTimeSlot) {
-          return (
-            <div className="col-6 col-md-3">
-              <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
-            </div>  
-          );
+
+    const availableToday = this.props.availabilities.filter(a => a.date == this.state.selectedDate && a.idDoctor == this.props.doctor.id);
+
+    var availableTimeslots = [];
+    var toCompare = new Date().toLocaleDateString();
+    for(var i=0; i<this.props.timeslots.length; ++i) {
+      for(var j=0; j<availableToday.length; ++j) {
+        if (new Date(toCompare+" "+this.props.timeslots[i].start) >= new Date(toCompare+" "+availableToday[j].startTime) && new Date(toCompare+" "+this.props.timeslots[i].end) <= new Date(toCompare+" "+availableToday[j].endTime) && !availableTimeslots.includes(this.props.timeslots[i].id)) {
+          availableTimeslots.push(this.props.timeslots[i].id);
         }
       }
-      return (
-        <div className="col-6 col-md-3" onClick={() => this.take(timeslot.id)}>
-          <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
-        </div>  
-      );
+    }
+
+    const slots = this.props.timeslots.map(timeslot => {
+      // console.log(timeslot);
+      if (availableTimeslots.includes(timeslot.id)) {
+        for(var i=0; i<today.length; ++i) {
+          // console.log(timeslot.id + " " + today[i].idTimeSlot);
+          if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
+            return (
+              <div className="col-6 col-md-3">
+                <div id={timeslot.id} className="chosen"><span>{timeslot.start}-{timeslot.end}</span></div>
+              </div>  
+            );
+          } 
+          if (timeslot.id == today[i].idTimeSlot) {
+            return (
+              <div className="col-6 col-md-3">
+                <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
+              </div>  
+            );
+          }
+        }
+        return (
+          <div className="col-6 col-md-3" onClick={() => this.take(timeslot.id)}>
+            <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
+          </div>  
+        );
+      } else {
+        return (
+          <div className="col-6 col-md-3">
+            <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
+          </div>  
+        );
+      }
     });
 
     console.log(this.state.selectedDate);

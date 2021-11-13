@@ -17,14 +17,17 @@ import { deleteAppointment } from '../redux/ActionCreators';
 import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
 import { addDescription } from '../redux/ActionCreators';
-
+import { addAvailability } from '../redux/ActionCreators';
+import { deleteAvailability } from '../redux/ActionCreators';
+import DoctorAvailability from './DoctorAvailabilityComponent';
  
 const mapStateToProps = state => {
     return {
       appointments: state.appointments,
       doctors: state.doctors,
       patients: state.patients,
-      timeslots: state.timeslots
+      timeslots: state.timeslots,
+      availabilities: state.availabilities
     }
   }
   
@@ -33,7 +36,9 @@ const mapDispatchToProps = dispatch => ({
     addAppointment: (idPatient, idDoctor, idTimeSlot, date) => 
         dispatch( addAppointment(idPatient, idDoctor, idTimeSlot, date)),
     deleteAppointment : (id) => dispatch(deleteAppointment(id)),
-    addDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(addDescription(id, idPatient, idDoctor, idTimeSlot, date, desc))
+    addDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(addDescription(id, idPatient, idDoctor, idTimeSlot, date, desc)),
+    addAvailability : (idDoctor, date, startTime, endTime) => dispatch(addAvailability(idDoctor, date, startTime, endTime)),
+    deleteAvailability: (id) => dispatch(deleteAvailability(id))
   })
   
 class Main extends Component{
@@ -57,7 +62,7 @@ class Main extends Component{
         const TakeAppointmentById = ({match}) => {
             return (
                 <TakeAppointment doctor={this.props.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
-                appointments={this.props.appointments} timeslots={this.props.timeslots}
+                appointments={this.props.appointments} timeslots={this.props.timeslots} availabilities={this.props.availabilities}
                 addAppointment={this.props.addAppointment}/>
             );
         };
@@ -81,7 +86,7 @@ class Main extends Component{
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}
-                        addAppointment={this.props.addAppointment} deleteAppointment={this.props.deleteAppointment} />} />
+                        addAppointment={this.props.addAppointment} deleteAppointment={this.props.deleteAppointment} availabilities={this.props.availabilities}/>} />
                         <Route path={"/doctorinfo"} component={DoctorInfo} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
                         <Route path="/listClientAppointments" component={() => <ListClientAppointments 
@@ -99,7 +104,10 @@ class Main extends Component{
                         patients={this.props.patients} 
                         appointments={this.props.appointments.filter(app => app.idDoctor == localStorage.getItem("userId") && app.date == (new Date).toLocaleDateString())} 
                         timeslots={this.props.timeslots}/>}/>
-                       
+                        <Route path="/doctorAvailability" component={() => <DoctorAvailability
+                        timeslots={this.props.timeslots} availabilities={this.props.availabilities} 
+                        addAvailability={this.props.addAvailability}
+                        deleteAvailability={this.props.deleteAvailability}/>} />
                         <Redirect to={"/login"} />
                     </Switch>
                 </div>
