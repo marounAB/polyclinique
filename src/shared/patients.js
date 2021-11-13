@@ -1,19 +1,6 @@
 
 export const PATIENTS = [
     {
-        id: 0,
-        name: "Dummy",
-        surname: "Patient",
-        email: "",
-        password: "",
-        phonenumber:"01 678 432",
-        profession: "artist",
-        dateofbirth: "10/9/1998",
-        address : "mansourieh"
-
-
-    },
-    {
         id: 1,
         name: "Cynthia",
         surname: "Obei" ,

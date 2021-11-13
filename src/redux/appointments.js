@@ -8,7 +8,6 @@ export const Appointments = (state = APPOINTMENTS, action) => {
             var appointment = action.payload;
             appointment.id = state.length;
             appointment.description = "";
-            console.log("appointment", appointment);
             return state.concat(appointment);
         case ActionTypes.DELETE_APPOINTMENT:
             return state.filter(app => app.id != action.payload.id);

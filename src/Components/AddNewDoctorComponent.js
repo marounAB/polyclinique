@@ -15,7 +15,8 @@ class addDoctor extends Component {
             surname: "",
             email: "",
             password: "",
-            speciality: ""
+            speciality: "",
+            price: 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -81,6 +82,12 @@ class addDoctor extends Component {
                                         <Label htmlfor="speciality" md={2}>Speciality</Label>
                                         <Col md={10}>
                                             <Input type="text" value={this.state.speciality}  onChange={this.handleInputChange} name="speciality" className="form-control" placeholder="Enter Speciality" />
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row>
+                                        <Label htmlfor="price" md={2}>Checkup Price (in $)</Label>
+                                        <Col md={10}>
+                                            <Input type="number" min="50.00" max="100.00" value={this.state.price}  onChange={this.handleInputChange} name="price" className="form-control" placeholder="Enter Checkup Price" />
                                         </Col>
                                     </FormGroup>
                                     <Button className="mt-3" type="submit" color="primary">Submit</Button>

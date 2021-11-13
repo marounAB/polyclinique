@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { faBusinessTime } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class HeaderDoctor extends Component {
     constructor(props) {
@@ -38,16 +40,19 @@ class HeaderDoctor extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-home fa-lg"></span>Home</NavLink>
+                                <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/doctorinfo'><span className="fa fa-plus fa-lg"></span>Personnal informormation</NavLink>
+                                <NavLink className="nav-link" to='/doctorinfo'><span className="fa fa-plus fa-lg"></span> Personnal informormation</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/todayAppointments'><span className="fa fa-list fa-lg"></span>Today's Appointments</NavLink>
+                                <NavLink className="nav-link"  to='/todayAppointments'><span className="fa fa-list fa-lg"></span> Today's Appointments</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className={`nav-link ${this.state.show}`}  to='/addDoctor'><span className="fa fa-list fa-lg"></span>Add new Doctor</NavLink>
+                                <NavLink className="nav-link"  to='/doctorAvailability'><FontAwesomeIcon icon={faBusinessTime} /> Availabilities</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className={`nav-link ${this.state.show}`}  to='/addDoctor'><span className="fa fa-plus fa-lg"></span> Add new Doctor</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

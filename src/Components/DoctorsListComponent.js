@@ -23,7 +23,7 @@ const RenderADoctor = ({doctor}) => {
                                 <Media heading>
                                     {doctor.name} {doctor.surname}
                                 </Media>
-                                <p>{doctor.speciality}</p>
+                                <p>{doctor.speciality}<br/>Price: {doctor.price}$</p>
                             </div>
                         </Media>
                     </Media>

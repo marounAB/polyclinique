@@ -23,7 +23,7 @@ class HomeDoctor extends Component{
                         </div>
                         <div className="col-md-9 col-12">
                             {/* <h3>Appointments</h3> */}
-                            <DoctorSchedule patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots} addAppointment={this.props.addAppointment} deleteAppointment={this.props.deleteAppointment} />
+                            <DoctorSchedule patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots} addAppointment={this.props.addAppointment} deleteAppointment={this.props.deleteAppointment} availabilities={this.props.availabilities}/>
                             {/* <DoctorAppointments patients={this.props.patients} appointments={this.props.appointments} timeslots={this.props.timeslots}/> */}
                         </div>
                     </div>
