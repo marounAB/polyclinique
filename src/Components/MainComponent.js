@@ -17,11 +17,10 @@ import { deleteAppointment } from '../redux/ActionCreators';
 import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
 import { addDescription } from '../redux/ActionCreators';
-
 import { addAvailability } from '../redux/ActionCreators';
 import { deleteAvailability } from '../redux/ActionCreators';
 import DoctorAvailability from './DoctorAvailabilityComponent';
-
+import { actions } from 'react-redux-form';
  
 const mapStateToProps = state => {
     return {
@@ -40,7 +39,8 @@ const mapDispatchToProps = dispatch => ({
     deleteAppointment : (id) => dispatch(deleteAppointment(id)),
     addDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(addDescription(id, idPatient, idDoctor, idTimeSlot, date, desc)),
     addAvailability : (idDoctor, date, startTime, endTime) => dispatch(addAvailability(idDoctor, date, startTime, endTime)),
-    deleteAvailability: (id) => dispatch(deleteAvailability(id))
+    deleteAvailability: (id) => dispatch(deleteAvailability(id)),
+    resetLoginForm: () => {dispatch(actions.reset('login'))}
   })
 
 
@@ -83,7 +83,7 @@ class Main extends Component{
         return(
                 <div>
                     <Switch>
-                        <Route path={"/login"} component={Login} />
+                        <Route path={"/login"} component={() => <Login patients={this.props.patients} doctors={this.props.doctors} resetLoginForm={this.props.resetLoginForm}/>} />
                         <Route path={"/home"} component={HomePage} />
                         <Route exact path={"/doctorsList"} component={() => <DoctorsList doctors={this.props.doctors} />} />
                         <Route path={"/doctorsList/:doctorId"} component= {TakeAppointmentById} />

@@ -5,10 +5,10 @@ import { Appointments } from './appointments';
 import { Doctors } from './doctors';
 import { Patients } from './patients';
 import { Timeslots } from './timeslots';
-
+import { InitialLogin } from './forms';
 import auth from "./auth";
 import message from "./message";
-
+import { createForms } from 'react-redux-form';
 import { Availabilities } from './availabilities';
 
 
@@ -24,11 +24,11 @@ export const ConfigureStore = () => {
             message: message,
             
 
-            availabilities: Availabilities
+            availabilities: Availabilities,
 
-            // ...createForms({
-            //     feedback: InitialFeedback
-            // })
+            ...createForms({
+                login: InitialLogin
+            })
         }),
         applyMiddleware(thunk, logger)
     );
