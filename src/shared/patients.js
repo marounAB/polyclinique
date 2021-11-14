@@ -7,7 +7,7 @@ export const PATIENTS = [
         email:'cynthiaobei@gmail.com', 
         password: '123',
         phonenumber:"76 985 273",
-        profession: "engineer",
+        idProfession: 1,
         dateofbirth: "18/11/2000",
         address : "fanar"
 
@@ -19,7 +19,7 @@ export const PATIENTS = [
         email: "lea.khoury@gmail.com",
         password: "lala",
         phonenumber:"70 543 872",
-        profession: "manager",
+        idProfession: 2,
         dateofbirth: "15/3/1992",
         address : "dekwaneh"
     }

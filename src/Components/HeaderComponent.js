@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Header extends Component {
     constructor(props) {
@@ -38,6 +40,9 @@ class Header extends Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link"  to='/listClientDescriptions'><span className="fa fa-list fa-lg"></span> Your Past Checkups</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link"  to='/login'><FontAwesomeIcon icon={faSignOutAlt} /> Log Out</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

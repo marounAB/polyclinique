@@ -10,7 +10,8 @@ import auth from "./auth";
 import message from "./message";
 import { createForms } from 'react-redux-form';
 import { Availabilities } from './availabilities';
-
+import { Specialities } from './specialities';
+import { Professions } from './professions';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -19,7 +20,8 @@ export const ConfigureStore = () => {
             doctors: Doctors,
             patients: Patients,
             timeslots: Timeslots,
-
+            specialities: Specialities,
+            professions: Professions,
             auth: auth,
             message: message,
             
