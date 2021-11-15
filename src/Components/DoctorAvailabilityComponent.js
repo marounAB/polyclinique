@@ -17,6 +17,9 @@ class DoctorAvailability extends Component {
         if (!values.from || !values.to) {
             return;
         }
+        if (new Date(toCompare+" "+values.from) >= new Date(toCompare+" "+values.to)) {
+            return;
+        }
         if (existing.length == 0) {
             this.props.addAvailability(localStorage.getItem("userId"), date, values.from, values.to);
             return;

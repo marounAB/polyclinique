@@ -20,15 +20,15 @@ class DoctorSchedule extends Component {
     });
   }
 
-  take(id) {
-    alert("doctor "+ localStorage.getItem('userId') + " timeslot " + id);
-    this.props.addAppointment(0, parseInt(localStorage.getItem('userId')), id, this.state.selectedDate);
-  }
+  // take(id) {
+  //   alert("doctor "+ localStorage.getItem('userId') + " timeslot " + id);
+  //   this.props.addAppointment(0, parseInt(localStorage.getItem('userId')), id, this.state.selectedDate);
+  // }
 
-  delete(id) {
-      alert("delete")
-      this.props.deleteAppointment(id);
-  }
+  // delete(id) {
+  //     alert("delete")
+  //     this.props.deleteAppointment(id);
+  // }
 
   render() {
     const dates = [];
@@ -63,7 +63,7 @@ class DoctorSchedule extends Component {
           // console.log(timeslot.id + " " + today[i].idTimeSlot);
           if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == 0) {
             return (
-              <div className="col-6 col-md-3" onClick={() => this.delete(today[i].id)}>
+              <div className="col-6 col-md-3">
                 <div id={timeslot.id} className="chosen">Break<br/>{timeslot.start}-{timeslot.end}</div>
               </div>  
             );
@@ -78,7 +78,7 @@ class DoctorSchedule extends Component {
           }
         }
         return (
-          <div className="col-6 col-md-3" onClick={() => this.take(timeslot.id)}>
+          <div className="col-6 col-md-3">
             <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
           </div>  
         );
