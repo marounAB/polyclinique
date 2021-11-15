@@ -1,44 +1,48 @@
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Col, Container } from 'reactstrap';
+import { Button, Row,  FormGroup, Label, Input, Col, Container } from 'reactstrap';
 import { PATIENTS } from '../shared/patients';
 import { DOCTORS } from '../shared/doctors';
+import { Control,Form,    Errors } from 'react-redux-form';
+
+import { withRouter } from 'react-router';
+
+
 
 class FichierMedical extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
+  /*      this.state = {
             doctorEmails: DOCTORS.map(doctor => doctor.email),
             patients: PATIENTS,
-            name: '',
-            surname: '',
-            dateOfBirth: new Date(),
+            
             address: '',
-            phoneNumber: '',
+            firstname: '',
+            lastname: '',
+            dateOfBirth: '',
             email: '',
+            phoneNumber: '',
+          
             profession: '',
             activities: '',
             medicalHistory: '',
             insurance: ''
             
-        }
+        }*/
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
+   //     this.handleInputChange = this.handleInputChange.bind(this);
     };
 
-    handleSubmit(event) {
-        if (this.state.patients.filter(patient => patient.email == this.state.email).length == 0
-        && this.state.doctorEmails.filter(e => e==this.state.email).length == 0) {
-            alert(JSON.stringify(this.state));
-            this.props.history.push("/home");
-        } else {
-            alert("email already taken");
-        }
-        event.preventDefault();
-    }
-    
+    handleSubmit(values) {
+        
+            alert('Current State is: ' + JSON.stringify(values));
+            
 
+            this.props.history.push("/home");
+         
+    }
+/*
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -47,73 +51,194 @@ class FichierMedical extends Component{
         this.setState({
             [name]: value
         });
-    }
+    }*/
 
     render(){
+        const required = (val) => val && val.length;
+        const maxLength = (len) => (val) => !(val) || (val.length <= len);
+        const minLength = (len) => (val) => val && (val.length >= len);
+        const isDate = (val) => /^\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/i.test(val);
+        const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+        const isNumber = (val) => !isNaN(Number(val));
+
       return(
         <div className="container-fluid">
-        <Form onSubmit={this.handleSubmit}>
+        <Form model="user" onSubmit={(values) => this.handleSubmit(values)}>
+                    
         <div className="container" Style="padding-top: 40px;">
             <h3>Personnal Information</h3>
         <div className="row row-content">
             <div className="col-12 col-md-6">
-                <FormGroup row>
-                        <Label htmlfor="name" md={2}>First Name</Label>
+                <Row className="form-group"> 
+                        <Label htmlfor="firstname" md={2}>First Name</Label>
                         <Col md={10}>
-                            <Input type="text" value={this.state.name}  onChange={this.handleInputChange} name="name" className="form-control" placeholder="Enter First Name" />
+                        <Control.text model=".firstname" id="firstname" name="firstname"
+                                        placeholder="First Name" className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(15)
+                                        }}
+                                         />
+                        <Errors
+                        className="text-danger"
+                        model=".firstname"
+                        show="touched"
+                        messages={{
+                            required: 'Required',
+                            minLength: 'Must be greater than 2 characters',
+                            maxLength: 'Must be 15 characters or less'
+                        }}
+                    />
                         </Col>
-                </FormGroup>
+                </Row>
 
-                <FormGroup row>
-                    <Label htmlfor="surname" md={2}>Last Name</Label>
+                <Row className="form-group">
+                    <Label htmlfor="lastname" md={2}>Last Name</Label>
                     <Col md={10}>
-                        <Input type="text" value={this.state.surname}  onChange={this.handleInputChange} name="surname" className="form-control" placeholder="Enter Last Name" />
+                    <Control.text model=".lastname" id="lastname" name="lastname"
+                                        placeholder="Last Name" className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(15)
+                                        }}
+                                         />
+                    <Errors
+                        className="text-danger"
+                        model=".lastname"
+                        show="touched"
+                        messages={{
+                            required: 'Required',
+                            minLength: 'Must be greater than 2 characters',
+                            maxLength: 'Must be 15 characters or less'
+                        }}
+                        />
                     </Col>
-                </FormGroup>
+                </Row>
 
-                <FormGroup row>
+                <Row className="form-group">
                     <Label htmlfor="dateOfBirth" md={2}>Date of Birth</Label>
                     <Col md={10}>
-                        <Input type="date" value={this.state.dateOfBirth}  onChange={this.handleInputChange} name="dateOfBirth" className="form-control" placeholder="Enter Date of Birth" />
+                    <Control.text model=".dateOfBirth" id="dateOfBirth" name="dateOfBirth"
+                    placeholder="YYYY-MM-DD" className="form-control"
+                    validators={{
+                        required, isDate}}
+                        />
+                    <Errors
+                        className="text-danger"
+                        model=".dateOfBirth"
+                        show="touched"
+                        messages={{
+                            required: 'Required',
+                            isDate : 'Should be in this format: YYYY-MM-DD'
+                        }}
+                        />
                     </Col>
-                </FormGroup>
+                </Row>
 
-                <FormGroup row>
+                <Row className="form-group">
                     <Label md={2}>Address</Label>
                     <Col md={10}>
-                        <Input htmlfor="Address" type="text" value={this.state.address}  onChange={this.handleInputChange} name="address" className="form-control" placeholder="Enter Address" />
+                    <Control.text model=".address" id="address" name="address"
+                            placeholder="Address" className="form-control"
+                            validators={{
+                                required
+                            }}
+                                />
+                    <Errors
+                    className="text-danger"
+                    model=".address"
+                    show="touched"
+                    messages={{
+                        required: 'Required',
+                    }}
+                    />
+
                     </Col>
-                </FormGroup>
+                </Row>
                     </div>
 
                     <div className="col-12 col-md-6">
-                    <FormGroup row>
+                    <Row className="form-group">
                         <Label md={2}>Phone Number</Label>
                         <Col md={10}>
-                            <Input htmlfor="phoneNumber" type="tel" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}" value={this.state.phoneNumber}  onChange={this.handleInputChange} name="phoneNumber" className="form-control" placeholder="Enter Phone Number" />
+                        <Control.text model=".phoneNumber" id="phoneNumber" name="phoneNumber"
+                            placeholder="phoneNumber" className="form-control"
+                            validators={{
+                                required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                            }}
+                                />
+                        <Errors
+                            className="text-danger"
+                            model=".phoneNumber"
+                            show="touched"
+                            messages={{
+                                required: 'Required',
+                                minLength: 'Must be greater than 2 numbers',
+                                maxLength: 'Must be 15 numbers or less',
+                                isNumber: 'Must be a number'
+                            }}
+                            />
                         </Col>
-                    </FormGroup>
+                    </Row>
 
-                    <FormGroup row>
+                    <Row className="form-group">
                         <Label htmlfor="email" md={2}>Email address</Label>
                         <Col md={10}>
-                            <Input type="email" value={this.state.email}  onChange={this.handleInputChange} name="email" className="form-control" placeholder="Enter Email" />
-                        </Col>
-                    </FormGroup>
+                        <Control.text model=".email" id="email" name="email"
+                            placeholder="Email"  className="form-control"
+                            validators={{
+                                required, validEmail
+                            }}
+                                />
+                        <Errors
+                            className="text-danger"
+                            model=".email"
+                            show="touched"
+                            messages={{
+                                required: 'Required',
+                                validEmail: 'Invalid Email Address'
+                            }}
+                            />
+                    </Col>
+                    </Row>
 
-                    <FormGroup row>
+                    <Row className="form-group">
                         <Label htmlfor="profession" md={2}>Profession</Label>
                         <Col md={10}>
-                            <Input type="text" value={this.state.profession}  onChange={this.handleInputChange} name="profession" className="form-control" placeholder="Enter Profession" />
+                        <Control.text model=".profession" id="profession" name="profession"
+                            placeholder="Profession" className="form-control"
+                            Validators={{
+                                required
+                            }}
+                                />
+                    <Errors
+                    className="text-danger"
+                    model=".profession"
+                    show="touched"
+                    messages={{
+                        required: 'Required',
+                    }}
+                    />
                         </Col>
-                    </FormGroup>
+                    </Row>
 
-                    <FormGroup row>
+                    <Row className="form-group">
                         <Label htmlfor="activities" md={2}>Activities</Label>
                         <Col md={10}>
-                            <Input type="text" value={this.state.activities}  onChange={this.handleInputChange} name="activities" className="form-control" placeholder="Enter Activities" />
+                        <Control.text model=".activities" id="activities" name="activities"
+                            placeholder="activities" className="form-control"
+                            Validators={{
+                                required
+                            }}
+                                />
+                    <Errors
+                    className="text-danger"
+                    model=".activities"
+                    show="touched"
+                    messages={{
+                        required: 'Required',
+                    }}
+                    />
                         </Col>
-                    </FormGroup>
+                    </Row>
                     
                     </div>   
                     </div>
@@ -124,10 +249,11 @@ class FichierMedical extends Component{
             <h3>General Medical History</h3>
         <div className="row row-content" >
             <div className="col-12 col-md-9">
-            <FormGroup row>
+            <Row className="form-group">
             <Label htmlfor="medicalHistory" >Write your medical antecedents</Label>
-                <textarea type="text" Style="height:300px; width:900px;" value={this.stateMedicalHistory}  onChange={this.handleInputChange} name="medicalHistory" className="form-control" />
-                    </FormGroup>
+            <Control.textarea model=".description" id="description" name="description"
+               rows="12" className="form-control" />
+                    </Row>
                 </div>
         </div>
         </div>
@@ -136,16 +262,14 @@ class FichierMedical extends Component{
             <h3>Insurance</h3>
         <div className="row row-content" >
             <div className="col-12 col-md-9">
-            <FormGroup row>
-            <Input type="checkbox" class="form-check-input" id="CheckInsurance"></Input>
-            <Label className="form-check-label" htmlfor="Insurance" >Do you have medical insurance?</Label>
-            </FormGroup>
-            <FormGroup row>
+            <Row className="form-group">
                 <Label md={4}>Insurance Name</Label>
                 <Col md={8}>
-                     <Input htmlfor="insurance" type="text" value={this.state.insurance}  onChange={this.handleInputChange} name="insurance" className="form-control" placeholder="Enter Insurance Name" />
+                <Control.text model=".insurance" id="insurance" name="insurance"
+                            placeholder="insurance" className="form-control"
+                        />
                 </Col>
-                </FormGroup>
+                </Row>
             </div>
         </div>
         </div>
@@ -156,4 +280,7 @@ class FichierMedical extends Component{
 }
 }
 
-export default FichierMedical;
+
+
+
+export default withRouter(FichierMedical);
