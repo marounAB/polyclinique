@@ -66,7 +66,7 @@ class FichierMedical extends Component{
         <Form model="user" onSubmit={(values) => this.handleSubmit(values)}>
                     
         <div className="container" Style="padding-top: 40px;">
-            <h3>Personnal Information</h3>
+            <h3>Sign up</h3>
         <div className="row row-content">
             <div className="col-12 col-md-6">
                 <Row className="form-group"> 
@@ -130,27 +130,6 @@ class FichierMedical extends Component{
                             isDate : 'Should be in this format: YYYY-MM-DD'
                         }}
                         />
-                    </Col>
-                </Row>
-
-                <Row className="form-group">
-                    <Label md={2}>Address</Label>
-                    <Col md={10}>
-                    <Control.text model=".address" id="address" name="address"
-                            placeholder="Address" className="form-control"
-                            validators={{
-                                required
-                            }}
-                                />
-                    <Errors
-                    className="text-danger"
-                    model=".address"
-                    show="touched"
-                    messages={{
-                        required: 'Required',
-                    }}
-                    />
-
                     </Col>
                 </Row>
                     </div>
@@ -220,56 +199,7 @@ class FichierMedical extends Component{
                         </Col>
                     </Row>
 
-                    <Row className="form-group">
-                        <Label htmlfor="activities" md={2}>Activities</Label>
-                        <Col md={10}>
-                        <Control.text model=".activities" id="activities" name="activities"
-                            placeholder="activities" className="form-control"
-                            Validators={{
-                                required
-                            }}
-                                />
-                    <Errors
-                    className="text-danger"
-                    model=".activities"
-                    show="touched"
-                    messages={{
-                        required: 'Required',
-                    }}
-                    />
-                        </Col>
-                    </Row>
-                    
-                    </div>   
-                    </div>
-                </div>
-
-                  
-        <div className="container" Style="padding-top: 40px;">
-            <h3>General Medical History</h3>
-        <div className="row row-content" >
-            <div className="col-12 col-md-9">
-            <Row className="form-group">
-            <Label htmlfor="medicalHistory" >Write your medical antecedents</Label>
-            <Control.textarea model=".description" id="description" name="description"
-               rows="12" className="form-control" />
-                    </Row>
-                </div>
-        </div>
-        </div>
-
-        <div className="container" Style="padding-top: 40px; height:300px; ">
-            <h3>Insurance</h3>
-        <div className="row row-content" >
-            <div className="col-12 col-md-9">
-            <Row className="form-group">
-                <Label md={4}>Insurance Name</Label>
-                <Col md={8}>
-                <Control.text model=".insurance" id="insurance" name="insurance"
-                            placeholder="insurance" className="form-control"
-                        />
-                </Col>
-                </Row>
+             
             </div>
         </div>
         </div>

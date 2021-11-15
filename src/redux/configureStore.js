@@ -20,12 +20,9 @@ const InitialUserForm={
     dateOfBirth: '',
     email: '',
     phoneNumber: '',
-    address: '',
-    profession: '',
-    activities: '',
-    description :'',
  
-    insurance :''
+    profession: '',
+   
 
 }
 
