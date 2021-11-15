@@ -73,6 +73,9 @@ class Infopatient extends Component {
                     
                     )
                 });
+        
+        const profession = this.props.professions.filter(p => p.id == this.props.patient.idProfession)[0].description;
+
         return (   
             <div>
                 <HeaderDoctor />
@@ -100,7 +103,7 @@ class Infopatient extends Component {
                     <FormGroup row>
                         <Label htmlfor="profession" md={3}>Profession</Label>
                         <Col md={9}>
-                            <textarea readonly Style="width: 200px; text-align:center" value={this.props.patient.profession}></textarea>
+                            <textarea readonly Style="width: 200px; text-align:center" value={profession}></textarea>
                         </Col>
                     </FormGroup>
 

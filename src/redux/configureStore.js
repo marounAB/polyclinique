@@ -1,17 +1,18 @@
 import {createStore, combineReducers, applyMiddleware } from 'redux';
-import { createForms } from 'react-redux-form';
+
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { Appointments } from './appointments';
 import { Doctors } from './doctors';
 import { Patients } from './patients';
 import { Timeslots } from './timeslots';
-
+import { InitialLogin } from './forms';
 import auth from "./auth";
 import message from "./message";
-
+import { createForms } from 'react-redux-form';
 import { Availabilities } from './availabilities';
-
+import { Specialities } from './specialities';
+import { Professions } from './professions';
 
 const InitialUserForm={
     firstname: '',
@@ -44,23 +45,28 @@ export const ConfigureStore = () => {
             doctors: Doctors,
             patients: Patients,
             timeslots: Timeslots,
-
+            specialities: Specialities,
+            professions: Professions,
             auth: auth,
             message: message,
             
 
             availabilities: Availabilities,
-            ...createForms({
-             user: InitialUserForm,
+
+        /*    ...createForms({
+            
            //  doctor: InitialDoctorForm
 
-                 })
+                 })*/
             
           
 
-            // ...createForms({
-            //     feedback: InitialFeedback
-            // })
+
+
+            ...createForms({
+                login: InitialLogin,
+                user: InitialUserForm,
+            })
         }),
         applyMiddleware(thunk, logger)
     );

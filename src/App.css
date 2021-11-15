@@ -211,3 +211,7 @@ html, .App, #root, .auth-wrapper {
 .APatient hr {
   width: 100%;
 }
+
+.alignImage {
+  margin-left: 62px;
+}

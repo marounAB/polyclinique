@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import { faBusinessTime } from "@fortawesome/free-solid-svg-icons";
+import { faBusinessTime, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class HeaderDoctor extends Component {
@@ -43,9 +43,6 @@ class HeaderDoctor extends Component {
                                 <NavLink className="nav-link"  to='/homedoctor'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/doctorinfo'><span className="fa fa-plus fa-lg"></span> Personnal informormation</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink className="nav-link"  to='/todayAppointments'><span className="fa fa-list fa-lg"></span> Today's Appointments</NavLink>
                             </NavItem>
                             <NavItem>
@@ -53,6 +50,9 @@ class HeaderDoctor extends Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink className={`nav-link ${this.state.show}`}  to='/addDoctor'><span className="fa fa-plus fa-lg"></span> Add new Doctor</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link"  to='/login'><FontAwesomeIcon icon={faSignOutAlt} /> Log Out</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

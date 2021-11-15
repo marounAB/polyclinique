@@ -11,13 +11,14 @@ class ListDescriptions extends Component {
         const listApps = this.props.appointments.filter(app => new Date(app.date) <= new Date && app.description != "").map(app => {
             const time = this.props.timeslots.filter(t => t.id == app.idTimeSlot)[0];
             const doctor = this.props.doctors.filter(d => d.id == app.idDoctor)[0];
+            const speciality = this.props.specialities.filter(s => s.id == doctor.idSpeciality)[0].description;
             return (
                 <div className="col-12 app mb-3">
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-12">
                                 <h5>{doctor.name} {doctor.surname}</h5>
-                                <h6>Speciality {doctor.speciality}</h6>
+                                <h6>Speciality {speciality}</h6>
                                 <div>
                                     date: {app.date} <br/>
                                     time: {time.start} - {time.end}
