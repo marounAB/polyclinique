@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import HeaderDoctor from "./HeaderDoctor";
 import { Form, FormGroup, Label, Input, Col, Button, Container } from "reactstrap";
-import { DOCTORS } from "../shared/doctors";
-import { PATIENTS } from "../shared/patients";
 
 class addDoctor extends Component {
     constructor(props) {
         super(props);
 
         this.state={
-            patientEmails: PATIENTS.map(patient => patient.email),
-            doctors: DOCTORS,
             name: "",
             surname: "",
             email: "",
@@ -24,8 +20,8 @@ class addDoctor extends Component {
     }
 
     handleSubmit(event) {   
-        if (this.state.doctors.filter(doctor => doctor.email == this.state.email).length == 0
-        && this.state.patientEmails.filter(e => e==this.state.email).length ==0) {
+        if (this.props.doctors.filter(doctor => doctor.email == this.state.email).length == 0
+        && this.props.patientEmails.filter(e => e==this.state.email).length ==0) {
             console.log('Current State is: ' + JSON.stringify(this.state));
             alert('Current State is: ' + JSON.stringify(this.state));
         } else {

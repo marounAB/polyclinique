@@ -1,8 +1,6 @@
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { Component } from 'react';
 import { Button, Row,  FormGroup, Label, Input, Col, Container } from 'reactstrap';
-import { PATIENTS } from '../shared/patients';
-import { DOCTORS } from '../shared/doctors';
 import { Control,Form,    Errors } from 'react-redux-form';
 
 import { withRouter } from 'react-router';
