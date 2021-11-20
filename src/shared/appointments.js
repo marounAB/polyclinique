@@ -13,7 +13,7 @@ export const APPOINTMENTS = [
         idPatient: 1,
         idTimeSlot: 1,
         date: tmp2,
-        description: "lalalalala"
+        description: "description1"
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ export const APPOINTMENTS = [
         idPatient: 2,
         idTimeSlot: 3,
         date: tmp,
-        description: "hi"
+        description: "description2"
     },
     {
         id: 3,
@@ -37,6 +37,6 @@ export const APPOINTMENTS = [
         idPatient: 1,
         idTimeSlot: 1,
         date: tmp,
-        description: "lulululu"
+        description: "description2"
     },
 ]
