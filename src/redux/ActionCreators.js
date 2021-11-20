@@ -7,22 +7,78 @@ import {
     SET_MESSAGE,
   } from "./actionTypes";
   import AuthService from "../services/auth.service";
+import { baseUrl } from '../shared/baseUrl';
 
-export const addAppointment = (idPatient, idDoctor, idTimeSlot, date) => ({
+export const addAppointment = (appointment) => ({
     type: ActionTypes.ADD_APPOINTMENT,
-    payload: {
-        idPatient: idPatient,
-        idDoctor: idDoctor,
-        idTimeSlot: idTimeSlot,
-        date: date
-    }
+    payload: appointment
 });
+
+export const postAppointment = (idPatient, idDoctor, idTimeSlot, date) => (dispatch) => {
+
+  const newAppointment = {
+    idPatient: idPatient,
+    idDoctor: idDoctor,
+    idTimeSlot: idTimeSlot,
+    date: date,
+    description: ""
+  };
+
+  return fetch(baseUrl + 'appointments', {
+      method: "POST",
+      body: JSON.stringify(newAppointment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => dispatch(addAppointment(response)))
+  .catch(error =>  { console.log('post appointment', error.message); alert('Your appointment could not be posted\nError: '+error.message); });
+};
+
+export const removeAppointment = (id) => (dispatch) => {
+
+  const toDel = id;
+
+  return fetch(baseUrl + 'appointments/'+id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(dispatch(deleteAppointment(toDel)))
+  .catch(error =>  { console.log('post appointment', error.message); alert('Your appointment could not be posted\nError: '+error.message); });
+};
 
 export const deleteAppointment = (id) => ({
     type: ActionTypes.DELETE_APPOINTMENT,
-    payload: {
-        id: id
-    }
+    payload: id
 });
 
 export const addDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => ({
@@ -37,7 +93,41 @@ export const addDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) 
     }
 })
 
+export const putDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => (dispatch) => {
 
+  const newDescription = {
+    id: id,
+    idPatient: idPatient,
+    idDoctor: idDoctor,
+    idTimeSlot: idTimeSlot,
+    date: date,
+    description: desc
+  }
+
+  return fetch(baseUrl + 'appointments/' + id, {
+      method: "PUT",
+      body: JSON.stringify(newDescription),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(error =>  { console.log('post appointment', error.message); alert('Your appointment could not be posted\nError: '+error.message); });
+};
 
 export const setMessage = (message) => ({
   type: SET_MESSAGE,
@@ -103,3 +193,62 @@ export const deleteAvailability = (id) => ({
     }
 })
 
+export const fetchAppointments = () => (dispatch) => {    
+  return fetch(baseUrl + 'appointments')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(comments => dispatch(addAppointments(comments)))
+  .catch(error => dispatch(appointmentsFailed(error.message)));
+};
+
+export const appointmentsFailed = (errmess) => ({
+  type: ActionTypes.APPOINTMENTS_FAILED,
+  payload: errmess
+});
+
+export const addAppointments = (appointments) => ({
+  type: ActionTypes.ADD_APPOINTMENTS,
+  payload: appointments
+});
+
+export const fetchDoctors = () => (dispatch) => {    
+  return fetch(baseUrl + 'doctors')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(doctors => dispatch(addDcotors(doctors)))
+  .catch(error => dispatch(appointmentsFailed(error.message)));
+};
+
+export const doctorsFailed = (errmess) => ({
+  type: ActionTypes.DOCTORS_FAILED,
+  payload: errmess
+});
+
+export const addDcotors = (doctors) => ({
+  type: ActionTypes.ADD_DOCTORS,
+  payload: doctors
+});
