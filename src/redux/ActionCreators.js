@@ -81,16 +81,9 @@ export const deleteAppointment = (id) => ({
     payload: id
 });
 
-export const addDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => ({
+export const addDescription = (appointment) => ({
     type: ActionTypes.ADD_DESCRIPTION,
-    payload: {
-        id: id,
-        idPatient: idPatient,
-        idDoctor: idDoctor,
-        idTimeSlot: idTimeSlot,
-        date: date,
-        description: desc
-    }
+    payload: appointment
 })
 
 export const putDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => (dispatch) => {
@@ -125,7 +118,8 @@ export const putDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) 
           throw error;
     })
   .then(response => response.json())
-  .then(response => console.log(response))
+  // .then(response => console.log(response))
+  .then(response => dispatch(addDescription(response)))
   .catch(error =>  { console.log('post appointment', error.message); alert('Your appointment could not be posted\nError: '+error.message); });
 };
 
@@ -172,25 +166,75 @@ export const login = (username, password) => (dispatch) => {
     );
   };
   
-    
-
-  
-
-export const addAvailability = (idDoctor, date, startTime, endTime) => ({
+export const addAvailability = (availability) => ({
     type: ActionTypes.ADD_AVAILABILITY,
-    payload: {
-        idDoctor: idDoctor,
-        date: date,
-        startTime: startTime,
-        endTime: endTime
-    }
+    payload: availability
 })
+
+export const postAvailability = (idDoctor, date, startTime, endTime) => (dispatch) => {
+
+  const newAvailability = {
+    idDoctor: idDoctor,
+    date: date,
+    startTime: startTime,
+    endTime: endTime
+  };
+
+  return fetch(baseUrl + 'availabilities', {
+      method: "POST",
+      body: JSON.stringify(newAvailability),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => dispatch(addAvailability(response)))
+  .catch(error =>  { console.log('post availability', error.message); alert('Your availability could not be posted\nError: '+error.message); });
+};
+
+export const removeAvailability = (id) => (dispatch) => {
+
+  const toDel = id;
+
+  return fetch(baseUrl + 'availabilities/'+id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(dispatch(deleteAvailability(toDel)))
+  .catch(error =>  { console.log('delete availability', error.message); alert('Your availability could not be deleted\nError: '+error.message); });
+};
 
 export const deleteAvailability = (id) => ({
     type: ActionTypes.DELETE_AVAILABILITY,
-    payload: {
-        id: id
-    }
+    payload: id
 })
 
 export const fetchAppointments = () => (dispatch) => {    
@@ -239,7 +283,7 @@ export const fetchDoctors = () => (dispatch) => {
           throw errmess;
     })
   .then(response => response.json())
-  .then(doctors => dispatch(addDcotors(doctors)))
+  .then(doctors => dispatch(addDoctors(doctors)))
   .catch(error => dispatch(appointmentsFailed(error.message)));
 };
 
@@ -248,7 +292,37 @@ export const doctorsFailed = (errmess) => ({
   payload: errmess
 });
 
-export const addDcotors = (doctors) => ({
+export const addDoctors = (doctors) => ({
   type: ActionTypes.ADD_DOCTORS,
+  payload: doctors
+});
+
+export const fetchAvailabilities = () => (dispatch) => {    
+  return fetch(baseUrl + 'availabilities')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(availabilities => dispatch(addAvailabilities(availabilities)))
+  .catch(error => dispatch(availabilitiesFailed(error.message)));
+};
+
+export const availabilitiesFailed = (errmess) => ({
+  type: ActionTypes.AVAILABILITIES_FAILED,
+  payload: errmess
+});
+
+export const addAvailabilities = (doctors) => ({
+  type: ActionTypes.ADD_AVAILABILITIES,
   payload: doctors
 });

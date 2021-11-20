@@ -22,6 +22,9 @@ import { postAppointment } from '../redux/ActionCreators';
 import { removeAppointment } from '../redux/ActionCreators';
 import { putDescription } from '../redux/ActionCreators';
 import { fetchDoctors } from '../redux/ActionCreators';
+import { fetchAvailabilities } from '../redux/ActionCreators';
+import { postAvailability } from '../redux/ActionCreators';
+import { removeAvailability } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -42,11 +45,12 @@ const mapDispatchToProps = dispatch => ({
         dispatch( postAppointment(idPatient, idDoctor, idTimeSlot, date)),
     removeAppointment : (id) => dispatch(removeAppointment(id)),
     putDescription : (id, idPatient, idDoctor, idTimeSlot, date, desc) => dispatch(putDescription(id, idPatient, idDoctor, idTimeSlot, date, desc)),
-    addAvailability : (idDoctor, date, startTime, endTime) => dispatch(addAvailability(idDoctor, date, startTime, endTime)),
-    deleteAvailability: (id) => dispatch(deleteAvailability(id)),
+    addAvailability : (idDoctor, date, startTime, endTime) => dispatch(postAvailability(idDoctor, date, startTime, endTime)),
+    deleteAvailability: (id) => dispatch(removeAvailability(id)),
     resetLoginForm: () => {dispatch(actions.reset('login'))},
     fetchAppointments: () => dispatch(fetchAppointments()),
-    fetchDoctors: () => dispatch(fetchDoctors())
+    fetchDoctors: () => dispatch(fetchDoctors()),
+    fetchAvailabilities: () => dispatch(fetchAvailabilities())
   })
 
 
@@ -69,13 +73,14 @@ class Main extends Component{
 
         this.props.fetchAppointments();
         this.props.fetchDoctors();
+        this.props.fetchAvailabilities();
     }
 
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
                 <TakeAppointment doctor={this.props.doctors.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
-                appointments={this.props.appointments.appointments} timeslots={this.props.timeslots} availabilities={this.props.availabilities}
+                appointments={this.props.appointments.appointments} timeslots={this.props.timeslots} availabilities={this.props.availabilities.availabilities}
                 addAppointment={this.props.postAppointment} />
             );
         };
@@ -99,7 +104,7 @@ class Main extends Component{
                         <Route path={"/Signup"} component={Signup} />
                         <Route path={"/medicalfile"} component={FichierMedical} />
                         <Route path={"/homedoctor"} component={() => <HomeDoctor patients={this.props.patients} appointments={this.props.appointments.appointments.filter(app => app.idDoctor == localStorage.getItem('userId'))} timeslots={this.props.timeslots}
-                        addAppointment={this.props.postAppointment} deleteAppointment={this.props.removeAppointment} availabilities={this.props.availabilities}/>} />
+                        addAppointment={this.props.postAppointment} deleteAppointment={this.props.removeAppointment} availabilities={this.props.availabilities.availabilities}/>} />
                         <Route path={"/infopatient/:patientId"} component={PatientById} />
                         <Route path="/listClientAppointments" component={() => <ListClientAppointments 
                         deleteAppointment={this.props.removeAppointment}
@@ -117,7 +122,7 @@ class Main extends Component{
                         appointments={this.props.appointments.appointments.filter(app => app.idDoctor == localStorage.getItem("userId") && app.date == (new Date).toLocaleDateString())} 
                         timeslots={this.props.timeslots}/>}/>
                         <Route path="/doctorAvailability" component={() => <DoctorAvailability
-                        timeslots={this.props.timeslots} availabilities={this.props.availabilities} 
+                        timeslots={this.props.timeslots} availabilities={this.props.availabilities.availabilities} 
                         addAvailability={this.props.addAvailability}
                         deleteAvailability={this.props.deleteAvailability}/>} />
                         <Redirect to={"/login"} />

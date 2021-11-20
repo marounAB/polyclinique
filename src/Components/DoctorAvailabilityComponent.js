@@ -21,7 +21,7 @@ class DoctorAvailability extends Component {
             return;
         }
         if (existing.length == 0) {
-            this.props.addAvailability(localStorage.getItem("userId"), date, values.from, values.to);
+            this.props.addAvailability(parseInt(localStorage.getItem("userId")), date, values.from, values.to);
             return;
         } else {
             for(var i=0; i<existing.length; ++i) {
