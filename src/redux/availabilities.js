@@ -1,4 +1,3 @@
-import { AVAILABILITIES } from "../shared/availabilities";
 import * as ActionTypes from './actionTypes';
 
 export const Availabilities = (state={ errMess: null, availabilities:[] }, action) => {

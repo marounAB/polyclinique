@@ -9,12 +9,10 @@ import HomeDoctor from './HomeDoctor';
 import TakeAppointment from './TakeAppointmentComponent';
 import Infopatient from './Infopatient';
 import ListClientAppointments from './ListClientAppointments';
-import addDoctor from './AddNewDoctorComponent';
+import AddDoctor from './AddNewDoctorComponent';
 import { connect } from 'react-redux';
 import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
-import { addAvailability } from '../redux/ActionCreators';
-import { deleteAvailability } from '../redux/ActionCreators';
 import DoctorAvailability from './DoctorAvailabilityComponent';
 import { actions } from 'react-redux-form';
 import { fetchAppointments } from '../redux/ActionCreators';
@@ -111,7 +109,7 @@ class Main extends Component{
                         timeslots={this.props.timeslots} doctors={this.props.doctors.doctors} specialities={this.props.specialities}
                         appointments={this.props.appointments.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}
                         />} />
-                        <Route path={"/addDoctor"} component={() => <addDoctor doctors={this.props.doctors.doctors} patientEmails={this.props.patients.map(patient => patient.email)}/>} />
+                        <Route path={"/addDoctor"} component={() => <AddDoctor doctors={this.props.doctors.doctors} patientEmails={this.props.patients.map(patient => patient.email)}/>} />
                         <Route path="/listClientDescriptions" component={() => <ListDescriptions 
                         timeslots={this.props.timeslots} doctors={this.props.doctors.doctors} specialities={this.props.specialities}
                         appointments={this.props.appointments.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(b.date)) - (new Date(a.date));})}
