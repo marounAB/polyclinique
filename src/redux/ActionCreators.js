@@ -240,7 +240,7 @@ export const fetchDoctors = () => (dispatch) => {
     })
   .then(response => response.json())
   .then(doctors => dispatch(addDcotors(doctors)))
-  .catch(error => dispatch(appointmentsFailed(error.message)));
+  .catch(error => dispatch(doctorsFailed(error.message)));
 };
 
 export const doctorsFailed = (errmess) => ({
@@ -252,3 +252,132 @@ export const addDcotors = (doctors) => ({
   type: ActionTypes.ADD_DOCTORS,
   payload: doctors
 });
+
+export const patientsFailed = (errmess) => ({
+  type: ActionTypes.PATIENTS_FAILED,
+  payload: errmess
+});
+
+export const addPatients = (patients) => ({
+  type: ActionTypes.ADD_PATIENTS,
+  payload: patients
+});
+
+export const fetchPatients = () => (dispatch) => {    
+  return fetch(baseUrl + 'patients')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(patients => dispatch(addPatients(patients)))
+  .catch(error => dispatch(patientsFailed(error.message)));
+};
+
+export const timeslotsFailed = (errmess) => ({
+  type: ActionTypes.TIMESLOTS_FAILED,
+  payload: errmess
+});
+
+export const addTimeslots = (timeslots) => ({
+  type: ActionTypes.ADD_TIMESLOTS,
+  payload : timeslots
+});
+
+
+export const fetchTimeslots = () => (dispatch) => {    
+  return fetch(baseUrl + 'timeslots')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(timeslots => dispatch(addTimeslots(timeslots)))
+  .catch(error => dispatch(timeslotsFailed(error.message)));
+};
+
+
+export const specialitiesFailed = (errmess) => ({
+  type: ActionTypes.SPECIALITIES_FAILED,
+  payload : errmess
+});
+
+export const addSpecialities = (specialities) => ({
+  type: ActionTypes.ADD_SPECIALITIES,
+  payload: specialities
+});
+
+export const fetchSpecialities = () => (dispatch) => {    
+  return fetch(baseUrl + 'specialities')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(specialities => dispatch(addSpecialities(specialities)))
+  .catch(error => dispatch(specialitiesFailed(error.message)));
+};
+
+export const professionsFailed = (errmess) => ({
+  type: ActionTypes.PROFESSIONS_FAILED,
+  payload : errmess
+});
+
+export const addProfessions = (professions) => ({
+  type : ActionTypes.ADD_PROFESSIONS,
+  payload : professions
+});
+
+
+export const fetchProfessions = () => (dispatch) => {    
+  return fetch(baseUrl + 'professions')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(professions => dispatch(addProfessions(professions)))
+  .catch(error => dispatch(professionsFailed(error.message)));
+};
+
+
+
+
+
+

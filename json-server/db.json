@@ -212,6 +212,14 @@
       "date": "11/17/2021",
       "description": "",
       "id": 6
+    },
+    {
+      "idPatient": 1,
+      "idDoctor": 1,
+      "idTimeSlot": 6,
+      "date": "11/22/2021",
+      "description": "",
+      "id": 7
     }
   ],
   "availabilities": [

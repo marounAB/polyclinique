@@ -47,9 +47,9 @@ class Infopatient extends Component {
 
 
     render(){
-       const listApps = this.props.appointments.filter(app =>app.description !== "" && app.idPatient==this.props.patient.id && app.idDoctor==parseInt(localStorage.getItem("userId"))).sort((a, b) => a.date - b.date).map(app => {
+       const listApps = this.props.appointments.filter(app =>app.description !== "" && app.idPatient===this.props.patient.id && app.idDoctor===parseInt(localStorage.getItem("userId"))).sort((a, b) => a.date - b.date).map(app => {
             const time = this.props.timeslots.filter(t => t.id === app.idTimeSlot)[0];
-            const patient= this.props.patient;
+            const patient = this.props.patient;
 
             return (
                 <div className="col-12 app mb-3">
@@ -74,7 +74,7 @@ class Infopatient extends Component {
                     )
                 });
         
-        const profession = this.props.professions.filter(p => p.id == this.props.patient.idProfession)[0].description;
+        const profession = this.props.professions.filter(p => p.id === this.props.patient.idProfession)[0].description;
 
         return (   
             <div>
