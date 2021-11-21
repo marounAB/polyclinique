@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import HeaderDoctor from "./HeaderDoctor";
 import { Form, FormGroup, Label, Input, Col, Button, Container } from "reactstrap";
+import { withRouter } from "react-router";
 
-class addDoctor extends Component {
+class AddDoctor extends Component {
     constructor(props) {
         super(props);
 
@@ -97,4 +98,4 @@ class addDoctor extends Component {
     }
 }
 
-export default addDoctor;
+export default AddDoctor;

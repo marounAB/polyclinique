@@ -56,22 +56,22 @@ class Login extends Component{
                     <Form model="login" onSubmit={(values) => this.handleSubmit(values)}>
                         <h3 Style="padding-bottom: 25px;">Login</h3>
                         <Row className="form-group">
-                            <Label htmlfor="email" md={3}>Email address</Label>
-                            <Col md={8}>
+                            <Label htmlfor="email" sm={3}>Email address</Label>
+                            <Col sm={8}>
                                 <Control.text model=".email" id="email" name="email" className="form-control" placeholder="Enter email" validators={{required, validEmail}} />
                                 <Errors className="text-danger" model=".email" show="touched" messages={{required: 'Required', validEmail: 'Invalid Email Address'}} />
                             </Col>
                         </Row>
 
                         <Row className="form-group">
-                            <Label htmlfor="password" md={3}>Password</Label>
-                            <Col md={8}>
+                            <Label htmlfor="password" sm={3}>Password</Label>
+                            <Col sm={8}>
                                 <Control.password model=".password" id="password" name="password" className="form-control" placeholder="Enter password" validators={{required}}/>
                                 <Errors className="text-danger" model=".email" show="touched" messages={{ required: 'Required', validPassword: 'Invalid Password'}}/>
                             </Col>
                         </Row>
                         <Row className="form-group">
-                            <Col md={2}>
+                            <Col sm={2}>
                         <Button type="submit" color="primary">Submit</Button>
                         </Col>
                         </Row>

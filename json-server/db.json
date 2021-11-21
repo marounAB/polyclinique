@@ -178,7 +178,7 @@
       "idPatient": 2,
       "idDoctor": 1,
       "idTimeSlot": 3,
-      "date": "11/16/2021",
+      "date": "11/20/2021",
       "description": "ma beha chi"
     },
     {
@@ -186,7 +186,7 @@
       "idPatient": 1,
       "idDoctor": 1,
       "idTimeSlot": 12,
-      "date": "11/16/2021",
+      "date": "11/20/2021",
       "description": "tamem"
     },
     {
@@ -216,8 +216,8 @@
     {
       "idPatient": 1,
       "idDoctor": 1,
-      "idTimeSlot": 6,
-      "date": "11/22/2021",
+      "idTimeSlot": 3,
+      "date": "11/24/2021",
       "description": "",
       "id": 7
     }
@@ -226,44 +226,65 @@
     {
       "id": 1,
       "idDoctor": 1,
-      "date": "11/15/2021",
+      "date": "11/21/2021",
       "startTime": "9:00",
       "endTime": "14:00"
     },
     {
       "id": 2,
       "idDoctor": 2,
-      "date": "11/15/2021",
+      "date": "11/21/2021",
       "startTime": "9:30",
       "endTime": "16:00"
     },
     {
       "id": 3,
       "idDoctor": 1,
-      "date": "11/16/2021",
+      "date": "11/22/2021",
       "startTime": "9:00",
       "endTime": "13:30"
     },
     {
       "id": 4,
       "idDoctor": 1,
-      "date": "11/16/2021",
+      "date": "11/22/2021",
       "startTime": "15:00",
       "endTime": "17:00"
     },
     {
       "id": 5,
       "idDoctor": 1,
-      "date": "11/17/2021",
+      "date": "11/23/2021",
       "startTime": "14:00",
       "endTime": "17:00"
     },
     {
       "id": 6,
       "idDoctor": 1,
-      "date": "11/18/2021",
+      "date": "11/24/2021",
       "startTime": "9:30",
       "endTime": "15:00"
+    },
+    {
+      "idDoctor": 1,
+      "date": "11/26/2021",
+      "startTime": "11:00",
+      "endTime": "17:00",
+      "id": 9
+    },
+    {
+      "idDoctor": 1,
+      "date": "11/29/2021",
+      "startTime": "9:00",
+      "endTime": "11:00",
+      "id": 10
+    },
+    {
+      "idDoctor": "1",
+      "date": "11/29/2021",
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "id": 11
     }
   ]
 }
