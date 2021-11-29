@@ -11,7 +11,7 @@ class DoctorAvailability extends Component {
     }
 
     handleSubmit(values, date) {
-        alert(JSON.stringify(values)+ " " + date + " " + localStorage.getItem("userId"));
+        // alert(JSON.stringify(values)+ " " + date + " " + localStorage.getItem("userId"));
         var toCompare = new Date().toLocaleDateString();
         var existing = this.props.availabilities.filter(a => a.idDoctor == localStorage.getItem("userId") && a.date == date);
         if (!values.from || !values.to) {

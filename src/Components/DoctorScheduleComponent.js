@@ -70,7 +70,7 @@ class DoctorSchedule extends Component {
               const patient = this.props.patients.filter(p => p._id == today[i].idPatient)[0];
             return (
               <div className="col-6 col-md-3">
-                <div id={timeslot._id} className="taken">{patient.name} {patient.surname}<br/>{timeslot.start}-{timeslot.end}</div>
+                <div id={timeslot._id} className="chosen">{patient.name} {patient.surname}<br/>{timeslot.start}-{timeslot.end}</div>
               </div>  
             );
           }

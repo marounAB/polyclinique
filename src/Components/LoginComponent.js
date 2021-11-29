@@ -22,7 +22,7 @@ class Login extends Component{
               
 
                 //    console.log('Current State is: ' + JSON.stringify(this.state));
-                   alert('Current State is: ' + JSON.stringify(values));
+                //    alert('Current State is: ' + JSON.stringify(values));
                     localStorage.setItem('userId', this.props.patients[i]._id);
 
                     this.props.history.push("/home");
@@ -34,7 +34,7 @@ class Login extends Component{
                 if(values.password===this.props.doctors[j].password){
 
                   //  console.log('Current State is: ' + JSON.stringify(this.state));
-                   alert('Current State is: ' + JSON.stringify(values));
+                //    alert('Current State is: ' + JSON.stringify(values));
                     localStorage.setItem('userId', this.props.doctors[j]._id);
                     
                     if (this.props.doctors[j].admin == true) {

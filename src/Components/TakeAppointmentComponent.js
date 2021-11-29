@@ -41,7 +41,6 @@ class TakeAppointment extends Component {
   }
 
   take(id) {
-    alert("doctor "+this.props.doctor._id + " timeslot " + id + " patient " + localStorage.getItem("userId"));
     this.props.addAppointment(localStorage.getItem('userId'), this.props.doctor._id, id, localStorage.getItem("selectedDate"));
   }
 
