@@ -9,7 +9,7 @@ import HomeDoctor from './HomeDoctor';
 import TakeAppointment from './TakeAppointmentComponent';
 import Infopatient from './Infopatient';
 import ListClientAppointments from './ListClientAppointments';
-import AddDoctor from './AddNewDoctorComponent';
+import AddDoctor from './AddDoctorComponent';
 import { connect } from 'react-redux';
 import ListDescriptions from './ClientDescriptionsComponent';
 import TodayAppointments from './TodayAppointmentsComponent';
@@ -91,7 +91,7 @@ class Main extends Component{
     render(){
         const TakeAppointmentById = ({match}) => {
             return (
-                <TakeAppointment doctor={this.props.doctors.doctors.filter((doctor) => doctor.id === parseInt(match.params.doctorId,10))[0]} 
+                <TakeAppointment doctor={this.props.doctors.doctors.filter((doctor) => doctor._id === match.params.doctorId,10)[0]} 
 
                 appointments={this.props.appointments.appointments} timeslots={this.props.timeslots.timeslots} availabilities={this.props.availabilities.availabilities}
 
@@ -103,7 +103,7 @@ class Main extends Component{
 
         const PatientById = ({match}) => {
             return (
-                <Infopatient professions={this.props.professions.professions} patient={this.props.patients.patients.filter((patient) => patient.id === parseInt(match.params.patientId,10))[0]} appointments={this.props.appointments.appointments} timeslots={this.props.timeslots.timeslots}/>
+                <Infopatient professions={this.props.professions.professions} patient={this.props.patients.patients.filter((patient) => patient._id === match.params.patientId,10)[0]} appointments={this.props.appointments.appointments} timeslots={this.props.timeslots.timeslots}/>
             );
         }
 
@@ -127,7 +127,7 @@ class Main extends Component{
                         timeslots={this.props.timeslots.timeslots} doctors={this.props.doctors.doctors} specialities={this.props.specialities.specialities}
                         appointments={this.props.appointments.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(a.date)) - (new Date(b.date));})}
                         />} />
-                        <Route path={"/addDoctor"} component={() => <addDoctor doctors={this.props.doctors.doctors} patientEmails={this.props.patients.patients.map(patient => patient.email)}/>} />      
+                        <Route path="/addDoctor" component={() => <AddDoctor doctors={this.props.doctors.doctors} patientEmails={this.props.patients.patients.map(patient => patient.email)}/>} />      
                         <Route path="/listClientDescriptions" component={() => <ListDescriptions 
                         timeslots={this.props.timeslots.timeslots} doctors={this.props.doctors.doctors} specialities={this.props.specialities.specialities}
                         appointments={this.props.appointments.appointments.filter(app => app.idPatient == localStorage.getItem('userId')).sort(function(a, b) {return (new Date(b.date)) - (new Date(a.date));})}

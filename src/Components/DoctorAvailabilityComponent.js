@@ -13,7 +13,7 @@ class DoctorAvailability extends Component {
     handleSubmit(values, date) {
         alert(JSON.stringify(values)+ " " + date + " " + localStorage.getItem("userId"));
         var toCompare = new Date().toLocaleDateString();
-        var existing = this.props.availabilities.filter(a => a.idDoctor == parseInt(localStorage.getItem("userId")) && a.date == date);
+        var existing = this.props.availabilities.filter(a => a.idDoctor == localStorage.getItem("userId") && a.date == date);
         if (!values.from || !values.to) {
             return;
         }
@@ -21,7 +21,7 @@ class DoctorAvailability extends Component {
             return;
         }
         if (existing.length == 0) {
-            this.props.addAvailability(parseInt(localStorage.getItem("userId")), date, values.from, values.to);
+            this.props.addAvailability(localStorage.getItem("userId"), date, values.from, values.to);
             return;
         } else {
             for(var i=0; i<existing.length; ++i) {
@@ -80,7 +80,7 @@ class DoctorAvailability extends Component {
         }))
 
         const AvailableByDate = dates.map(date => {
-            const availabilities = this.props.availabilities.filter(a => a.idDoctor == parseInt(localStorage.getItem("userId")) && a.date == date);
+            const availabilities = this.props.availabilities.filter(a => a.idDoctor == localStorage.getItem("userId") && a.date == date);
             const showAvailabilities = availabilities.map(a => {
                 return (
                     <div className="row mb-1">
@@ -89,7 +89,7 @@ class DoctorAvailability extends Component {
                         <div className="col-2">To:</div>
                         <div className="col-2">{a.endTime}</div>
                         <div className="col-4">
-                            <div className="btn btn-primary" onClick={() => this.delete(a.id)}>Delete</div>
+                            <div className="btn btn-primary" onClick={() => this.delete(a._id)}>Delete</div>
                         </div>
                     </div>
                 );

@@ -44,48 +44,46 @@ class DoctorSchedule extends Component {
 
     const today = this.props.appointments.filter(app => app.idDoctor==localStorage.getItem('userId')  && app.date==this.state.selectedDate);
     
-    const availableToday = this.props.availabilities.filter(a => a.date == this.state.selectedDate && a.idDoctor == parseInt(localStorage.getItem("userId")));
+    const availableToday = this.props.availabilities.filter(a => a.date == this.state.selectedDate && a.idDoctor == localStorage.getItem("userId"));
 
     var availableTimeslots = [];
     var toCompare = new Date().toLocaleDateString();
     for(var i=0; i<this.props.timeslots.length; ++i) {
       for(var j=0; j<availableToday.length; ++j) {
-        if (new Date(toCompare+" "+this.props.timeslots[i].start) >= new Date(toCompare+" "+availableToday[j].startTime) && new Date(toCompare+" "+this.props.timeslots[i].end) <= new Date(toCompare+" "+availableToday[j].endTime) && !availableTimeslots.includes(this.props.timeslots[i].id)) {
-          availableTimeslots.push(this.props.timeslots[i].id);
+        if (new Date(toCompare+" "+this.props.timeslots[i].start) >= new Date(toCompare+" "+availableToday[j].startTime) && new Date(toCompare+" "+this.props.timeslots[i].end) <= new Date(toCompare+" "+availableToday[j].endTime) && !availableTimeslots.includes(this.props.timeslots[i]._id)) {
+          availableTimeslots.push(this.props.timeslots[i]._id);
         }
       }
     }
 
     const slots = this.props.timeslots.map(timeslot => {
-      // console.log(timeslot);
-      if (availableTimeslots.includes(timeslot.id)) {
+      if (availableTimeslots.includes(timeslot._id)) {
         for(var i=0; i<today.length; ++i) {
-          // console.log(timeslot.id + " " + today[i].idTimeSlot);
-          if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == 0) {
+          if (timeslot._id == today[i].idTimeSlot && today[i].idPatient == 0) {
             return (
               <div className="col-6 col-md-3">
-                <div id={timeslot.id} className="chosen">Break<br/>{timeslot.start}-{timeslot.end}</div>
+                <div id={timeslot._id} className="chosen">Break<br/>{timeslot.start}-{timeslot.end}</div>
               </div>  
             );
           } 
-          if (timeslot.id == today[i].idTimeSlot) {
-              const patient = this.props.patients.filter(p => p.id == today[i].idPatient)[0];
+          if (timeslot._id == today[i].idTimeSlot) {
+              const patient = this.props.patients.filter(p => p._id == today[i].idPatient)[0];
             return (
               <div className="col-6 col-md-3">
-                <div id={timeslot.id} className="taken">{patient.name} {patient.surname}<br/>{timeslot.start}-{timeslot.end}</div>
+                <div id={timeslot._id} className="taken">{patient.name} {patient.surname}<br/>{timeslot.start}-{timeslot.end}</div>
               </div>  
             );
           }
         }
         return (
           <div className="col-6 col-md-3">
-            <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
+            <div id={timeslot._id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
           </div>  
         );
       } else {
         return (
           <div className="col-6 col-md-3">
-            <div id={timeslot.id} className="taken">Unavailable<br/>{timeslot.start}-{timeslot.end}</div>
+            <div id={timeslot._id} className="taken">Unavailable<br/>{timeslot.start}-{timeslot.end}</div>
           </div>  
         );
       }

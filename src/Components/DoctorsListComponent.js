@@ -12,7 +12,7 @@ const imgStyle = {
 const RenderADoctor = ({doctor, speciality}) => {
     return ( 
         <div className="ADoctor container">
-            <Link to={`/doctorsList/${doctor.id}`} >
+            <Link to={`/doctorsList/${doctor._id}`} >
                 <Media className="mt-5">
                     <Media className="row align-items-center">
                         <Media left top className="col-4">
@@ -36,8 +36,8 @@ const RenderADoctor = ({doctor, speciality}) => {
 const DoctorsList = (props) => {
     const doctors = props.doctors.map((doctor) => {
         return (
-            <div className="col-12 col-md-6" key={doctor.id}>
-                <RenderADoctor doctor={doctor} speciality={props.specialities.filter(s => s.id == doctor.idSpeciality)[0].description}/>
+            <div className="col-12 col-md-6" key={doctor._id}>
+                <RenderADoctor doctor={doctor} speciality={props.specialities.filter(s => s._id == doctor.idSpeciality)[0].description}/>
             </div>
         )
     });

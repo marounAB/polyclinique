@@ -9,9 +9,9 @@ export const Appointments = (state = { errMess: null, appointments:[]}, action) 
             var appointment = action.payload;
             return { ...state, appointments: state.appointments.concat(appointment)};
         case ActionTypes.DELETE_APPOINTMENT:
-            return { ...state, appointments: state.appointments.filter(app => app.id != action.payload)};
+            return { ...state, appointments: state.appointments.filter(app => app._id != action.payload)};
         case ActionTypes.ADD_DESCRIPTION:
-            return { ...state, appointments: state.appointments.filter(app => app.id != action.payload.id).concat(action.payload)};
+            return { ...state, appointments: state.appointments.filter(app => app._id != action.payload.id).concat(action.payload)};
         default:
             return state
     }

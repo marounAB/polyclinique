@@ -23,7 +23,7 @@ class Login extends Component{
 
                 //    console.log('Current State is: ' + JSON.stringify(this.state));
                    alert('Current State is: ' + JSON.stringify(values));
-                    localStorage.setItem('userId', this.props.patients[i].id);
+                    localStorage.setItem('userId', this.props.patients[i]._id);
 
                     this.props.history.push("/home");
                 }
@@ -35,8 +35,13 @@ class Login extends Component{
 
                   //  console.log('Current State is: ' + JSON.stringify(this.state));
                    alert('Current State is: ' + JSON.stringify(values));
-                    localStorage.setItem('userId', this.props.doctors[j].id);
-                    localStorage.setItem('admin', this.props.doctors[j].admin);
+                    localStorage.setItem('userId', this.props.doctors[j]._id);
+                    
+                    if (this.props.doctors[j].admin == true) {
+                        localStorage.setItem('admin', 1);
+                    } else {
+                        localStorage.setItem('admin', 0);
+                    }
 
                     this.props.history.push("/homedoctor");
                 }

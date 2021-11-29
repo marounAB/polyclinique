@@ -24,7 +24,7 @@ function SearchBar(props){
                             return (
                                 <div className="container">
                                     <div className="row">
-                                <Link to={ `/infopatient/${val.id}` } type="click" >
+                                <Link to={ `/infopatient/${val._id}` } type="click" >
                                     <div className="col-12 APatient">
                                         {val.name} {val.surname}
                                     </div>

@@ -15,7 +15,7 @@ class ListApps extends Component {
 
     handleSubmit(event) {
         alert(this.state.description);
-        this.props.addDescription(this.props.app.id, this.props.patient.id, parseInt(localStorage.getItem("userId")), this.props.time.id , this.props.app.date ,this.state.description);
+        this.props.addDescription(this.props.app._id, this.props.patient._id, localStorage.getItem("userId"), this.props.time._id , this.props.app.date ,this.state.description);
         event.preventDefault();
     }
 

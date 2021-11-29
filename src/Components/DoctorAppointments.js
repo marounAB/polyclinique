@@ -27,9 +27,9 @@ function DoctorAppointments(props){
   );
   
   const ListAppointments = props.appointments.map(app => {
-    var patient = props.patients.filter(p => p.id === app.idPatient)[0];
+    var patient = props.patients.filter(p => p._id === app.idPatient)[0];
     var p = patient.name + " " + patient.surname;
-    var timeslot = props.timeslots.filter(t => t.id === app.idTimeSlot)[0];
+    var timeslot = props.timeslots.filter(t => t._id === app.idTimeSlot)[0];
     var sd = new Date(app.date + " " + timeslot.start + ":00");
     var ed = new Date(app.date + " " + timeslot.end + ":00");
     return (
@@ -37,7 +37,7 @@ function DoctorAppointments(props){
         title: p,
         startDate: sd,
         endDate: ed,
-        id: app.id,
+        id: app._id,
         location: ''
       }
       )

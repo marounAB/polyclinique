@@ -41,8 +41,8 @@ class TakeAppointment extends Component {
   }
 
   take(id) {
-    alert("doctor "+this.props.doctor.id + " timeslot " + id);
-    this.props.addAppointment(parseInt(localStorage.getItem('userId')), this.props.doctor.id, id, this.state.selectedDate);
+    alert("doctor "+this.props.doctor._id + " timeslot " + id);
+    this.props.addAppointment(localStorage.getItem('userId'), this.props.doctor._id, id, this.state.selectedDate);
   }
 
   render() {
@@ -57,49 +57,49 @@ class TakeAppointment extends Component {
       }
     }
 
-    const today = this.props.appointments.filter(app => app.idDoctor==this.props.doctor.id  && app.date==this.state.selectedDate);
+    const today = this.props.appointments.filter(app => app.idDoctor==this.props.doctor._id  && app.date==this.state.selectedDate);
 
-    const availableToday = this.props.availabilities.filter(a => a.date == this.state.selectedDate && a.idDoctor == this.props.doctor.id);
+    const availableToday = this.props.availabilities.filter(a => a.date == this.state.selectedDate && a.idDoctor == this.props.doctor._id);
 
     var availableTimeslots = [];
     var toCompare = new Date().toLocaleDateString();
     for(var i=0; i<this.props.timeslots.length; ++i) {
       for(var j=0; j<availableToday.length; ++j) {
-        if (new Date(toCompare+" "+this.props.timeslots[i].start) >= new Date(toCompare+" "+availableToday[j].startTime) && new Date(toCompare+" "+this.props.timeslots[i].end) <= new Date(toCompare+" "+availableToday[j].endTime) && !availableTimeslots.includes(this.props.timeslots[i].id)) {
-          availableTimeslots.push(this.props.timeslots[i].id);
+        if (new Date(toCompare+" "+this.props.timeslots[i].start) >= new Date(toCompare+" "+availableToday[j].startTime) && new Date(toCompare+" "+this.props.timeslots[i].end) <= new Date(toCompare+" "+availableToday[j].endTime) && !availableTimeslots.includes(this.props.timeslots[i]._id)) {
+          availableTimeslots.push(this.props.timeslots[i]._id);
         }
       }
     }
 
     const slots = this.props.timeslots.map(timeslot => {
       // console.log(timeslot);
-      if (availableTimeslots.includes(timeslot.id)) {
+      if (availableTimeslots.includes(timeslot._id)) {
         for(var i=0; i<today.length; ++i) {
           // console.log(timeslot.id + " " + today[i].idTimeSlot);
-          if (timeslot.id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
+          if (timeslot._id == today[i].idTimeSlot && today[i].idPatient == localStorage.getItem('userId')) {
             return (
               <div className="col-6 col-md-3">
-                <div id={timeslot.id} className="chosen"><span>{timeslot.start}-{timeslot.end}</span></div>
+                <div id={timeslot._id} className="chosen"><span>{timeslot.start}-{timeslot.end}</span></div>
               </div>  
             );
           } 
-          if (timeslot.id == today[i].idTimeSlot) {
+          if (timeslot._id == today[i].idTimeSlot) {
             return (
               <div className="col-6 col-md-3">
-                <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
+                <div id={timeslot._id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
               </div>  
             );
           }
         }
         return (
-          <div className="col-6 col-md-3" onClick={() => this.take(timeslot.id)}>
-            <div id={timeslot.id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
+          <div className="col-6 col-md-3" onClick={() => this.take(timeslot._id)}>
+            <div id={timeslot._id} className="choose"><span>{timeslot.start}-{timeslot.end}</span></div>
           </div>  
         );
       } else {
         return (
           <div className="col-6 col-md-3">
-            <div id={timeslot.id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
+            <div id={timeslot._id} className="taken"><span>{timeslot.start}-{timeslot.end}</span></div>
           </div>  
         );
       }

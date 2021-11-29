@@ -13,9 +13,9 @@ class ListClientAppointments extends Component {
 
     render() {
         const listApps = this.props.appointments.filter(app => new Date(app.date) > new Date).map(app => {
-            const time = this.props.timeslots.filter(t => t.id == app.idTimeSlot)[0];
-            const doctor = this.props.doctors.filter(d => d.id == app.idDoctor)[0];
-            const speciality = this.props.specialities.filter(s => s.id == doctor.idSpeciality)[0].description;
+            const time = this.props.timeslots.filter(t => t._id == app.idTimeSlot)[0];
+            const doctor = this.props.doctors.filter(d => d._id == app.idDoctor)[0];
+            const speciality = this.props.specialities.filter(s => s._id == doctor.idSpeciality)[0].description;
             return (
                 <div className="col-12 app mb-3">
                     <div className="container">
@@ -29,7 +29,7 @@ class ListClientAppointments extends Component {
                                 </div>
                             </div>
                             <div className="col-md-2 col-12 text-md-center mt-1">
-                                <div className="btn btn-primary" onClick={() => this.delete(app.id)}>Delete</div>
+                                <div className="btn btn-primary" onClick={() => this.delete(app._id)}>Delete</div>
                             </div>
                         </div>
                     </div>

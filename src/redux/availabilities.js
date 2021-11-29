@@ -14,7 +14,7 @@ export const Availabilities = (state={ errMess: null, availabilities:[] }, actio
             var newAvailability = action.payload;
             return { ...state, availabilities: state.availabilities.concat(newAvailability)};
         case ActionTypes.DELETE_AVAILABILITY:
-            return { ...state, availabilities: state.availabilities.filter(av => av.id != action.payload)};
+            return { ...state, availabilities: state.availabilities.filter(av => av._id != action.payload)};
         default:
             return state;
     }
