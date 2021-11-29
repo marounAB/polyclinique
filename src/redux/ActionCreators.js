@@ -89,7 +89,7 @@ export const addDescription = (appointment) => ({
 export const putDescription = (id, idPatient, idDoctor, idTimeSlot, date, desc) => (dispatch) => {
 
   const newDescription = {
-    id: id,
+    _id: id,
     idPatient: idPatient,
     idDoctor: idDoctor,
     idTimeSlot: idTimeSlot,
