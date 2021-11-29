@@ -6,7 +6,7 @@ class ListApps extends Component {
         super(props);
 
         this.state = {
-            description: ""
+            description: "empty"
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);

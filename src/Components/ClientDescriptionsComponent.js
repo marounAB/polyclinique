@@ -8,7 +8,7 @@ class ListDescriptions extends Component {
     }
 
     render() {
-        const listApps = this.props.appointments.filter(app => new Date(app.date) <= new Date && app.description != "").map(app => {
+        const listApps = this.props.appointments.filter(app => new Date(app.date) <= new Date && app.description != "empty").map(app => {
             const time = this.props.timeslots.filter(t => t._id == app.idTimeSlot)[0];
             const doctor = this.props.doctors.filter(d => d._id == app.idDoctor)[0];
             const speciality = this.props.specialities.filter(s => s._id == doctor.idSpeciality)[0].description;

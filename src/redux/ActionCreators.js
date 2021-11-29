@@ -21,7 +21,7 @@ export const postAppointment = (idPatient, idDoctor, idTimeSlot, date) => (dispa
     idDoctor: idDoctor,
     idTimeSlot: idTimeSlot,
     date: date,
-    description: ""
+    description: "empty"
   };
 
   return fetch(baseUrl + 'appointments', {
