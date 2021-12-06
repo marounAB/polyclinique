@@ -40,9 +40,9 @@ class Infopatient extends Component {
     }
 
     
-    componentDidMount() {
+    // componentDidMount() {
         // alert(JSON.stringify(this.props.patients))
-    }
+    // }
 
 
 

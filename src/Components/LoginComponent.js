@@ -55,7 +55,7 @@ class Login extends Component{
         const required = (val) => val && val.length;
         const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
         return(
-        <div className="container"  Style="padding-top: 100px; padding-left: 50px; background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,207,173,1) 0%, rgba(0,212,255,1) 100%); height:700px; width: 700px">
+        <div className="container"  Style="padding-top: 100px; padding-left: 50px; background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,207,173,1) 0%, rgba(0,212,255,1) 100%); height: 700px">
             <div className="row row-content">
                 <div className="col-12 col-md-9"  Style="padding-top: 50px; " >
                     <Form model="login" onSubmit={(values) => this.handleSubmit(values)}>
