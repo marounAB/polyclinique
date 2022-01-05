@@ -56,7 +56,14 @@ class DoctorSchedule extends Component {
       }
     }
 
-    const slots = this.props.timeslots.map(timeslot => {
+    const slots = this.props.timeslots.sort((a, b) => {
+      if (new Date(toCompare+" "+a.start) < new Date(toCompare+" "+b.start)) {
+        return -1;
+      }
+      else {
+        return 1;
+      }
+    }).map(timeslot => {
       if (availableTimeslots.includes(timeslot._id)) {
         for(var i=0; i<today.length; ++i) {
           if (timeslot._id == today[i].idTimeSlot && today[i].idPatient == 0) {
